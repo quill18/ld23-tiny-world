@@ -178,8 +178,7 @@ function addUnit(cell) {
 			}
 		}			
 
-		$("#money").html(results.money);
-		$("#my_money").val(results.money);
+		$("#team"+$("#current_team_id").val()+"_money").html(results.money);
 		setupUnitClicking();
 
 		if (results.message != null ) {

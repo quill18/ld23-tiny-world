@@ -1,0 +1,50 @@
+	<% for team_id in 0..1 %>
+<table class="scoreboard">
+		<% player = @game.players.where(:team_id => team_id).first %>
+	<tr>
+		<th colspan="2">
+			Team <%= team_id == 0 ? "Red" : "Blue" %>
+		</th>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<%= player.user.email %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Fish Food
+		</td>
+		<td id="team<%=team_id%>_money">
+			<%= player.money %>
+		</td>
+	</tr>
+	<tr>
+		<td id="team<%=team_id%>_castles">
+			Castles
+		</td>
+		<td>
+			<%= @game.castles_for_player(player).length %>
+		</td>
+	</tr>
+	<tr>
+		<td id="team<%=team_id%>_units">
+			Units
+		</td>
+		<td>
+		</td>
+	</tr>
+	<tr>
+		<td id="team<%=team_id%>_kills">
+			Kills
+		</td>
+		<td>
+		</td>
+	</tr>
+</table>
+	<% end %>
+
+<input type="hidden" id="player_id" value="<%= @player.id %>">
+<input type="hidden" id="current_player_id" value="<%= @game.current_player.id %>">
+<input type="hidden" id="current_team_id" value="<%= @game.current_team_id %>">
+

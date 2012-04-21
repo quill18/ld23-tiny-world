@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<p>You are the <%= @player.team_id==0? "RED" : "BLUE" %> team and you have <span id="money"><%= @player.money %></span> sand dollars to spend.</p>
 
-<p>Current player's turn: <%= @game.current_team_id==0? "RED" : "BLUE" %>
+<%= render :partial => "scoreboard" %>
 
   <table class="map map-game" data-add-unit-path="<%= add_unit_game_path(@game) %>" data-move-unit-path="<%= move_unit_game_path(@game) %>">
   	<%
@@ -39,10 +38,6 @@
   <% end %>
 
 
-<input type="hidden" id="player_id" value="<%= @player.id %>">
-<input type="hidden" id="current_player_id" value="<%= @game.current_player.id %>">
-<input type="hidden" id="current_team_id" value="<%= @game.current_team_id %>">
-<input type="hidden" id="my_money" value="<%= @player.money %>">
 
 
 <%= link_to 'Back to Game List', games_path %>

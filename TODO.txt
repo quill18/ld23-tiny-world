@@ -14,7 +14,6 @@ Saturday = Complete game features.
  	x 2 players
  x Pick map
  x Spawn initial units
- - Resource gathering?!?		-> Sand Dollars. Food Pellets. Algae. Pearls.
  x Purchase reinforcements
  x Move units
  x Movement restrictions
@@ -22,13 +21,14 @@ Saturday = Complete game features.
  x JavaScript is aware of teams
  x Attack enemy unit
  x Units die
+ x Clone map at start of game and/or prevent editing once the game is happening?
+ - Resource gathering?!?		-> Sand Dollars. Food Pellets. Algae. Pearls.
  - Win condition
  - Lose condition
 	- All units dead
 	- Base is destroyed
  - Draw condition
 	- Time expired
- x Clone map at start of game and/or prevent editing once the game is happening?
 
 
 Sunday = Polish.

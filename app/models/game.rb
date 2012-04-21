@@ -140,6 +140,14 @@ class Game < ActiveRecord::Base
 		self.save!
 	end
 
+	def castles_for_player(player)
+		castle_tag = "castle" + player.team_id.to_s
+
+		tile_type = TileType.where(:tag => castle_tag)
+
+		return self.map.tiles.where(:tile_type_id => tile_type)
+	end
+
 
 	private
 	def get_path(fromTile, toTile, movementLeft)
@@ -164,7 +172,10 @@ class Game < ActiveRecord::Base
 	end
 
 	def start_new_turn!
-		# TODO: Generate income
+		# Generate income
+		for player in self.players
+			player.money += castles_for_player(player).length * 5
+		end
 
 		# Reset all the units
 		for game_unit in self.game_units.where(:team_id => self.current_team_id)
