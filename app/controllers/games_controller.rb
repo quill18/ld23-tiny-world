@@ -18,8 +18,7 @@ class GamesController < ApplicationController
     # Quill18: About 4 hours into the project.
 
     @game = Game.find(params[:id], :include => [{:map => :tiles}])
-
-    @player = @game.players.where(:user_id => current_user.id).first
+    @player = @game.player_from_user(current_user)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -65,11 +64,9 @@ class GamesController < ApplicationController
   end
 
   def add_unit
-    # Ensure that we have the right player
-    @game = Game.find(params[:id])
-    @player = @game.player_from_user(current_user)
+    get_game
 
-    @game_unit = @game.add_unit!(params[:x], params[:y], params[:unit_tag], @player)
+    @game_unit = @game.add_unit!(params[:x].to_i, params[:y].to_i, params[:unit_tag], @player)
 
     if @game_unit.class == GameUnit
       respond_to do |format|
@@ -77,9 +74,38 @@ class GamesController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render json: { unit_tag: nil, message: @game_unit } }
+        format.json { render json: { message: @game_unit } }
       end
     end
+  end
+
+  def move_unit
+    get_game
+
+    @game_unit = @game.move_unit!(params[:fromX].to_i, params[:fromY].to_i, params[:toX].to_i, params[:toY].to_i, @player)
+
+    if @game_unit.class == GameUnit
+      respond_to do |format|
+        format.json { render json: { x: @game_unit.x, y: @game_unit.y } }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { message: @game_unit } }
+      end
+    end
+  end
+
+  def end_turn
+    get_game
+    @game.end_turn!
+    redirect_to :games
+  end
+
+  private
+  def get_game
+    @game = Game.find(params[:id], :include => [{:map => :tiles}])
+    @player = @game.player_from_user(current_user)
+    raise "Not your turn!" if @player != @game.current_player
   end
 
 end

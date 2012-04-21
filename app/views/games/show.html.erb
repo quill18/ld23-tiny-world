@@ -2,8 +2,9 @@
 
 <p>You are the <%= @player.team_id==0? "RED" : "BLUE" %> team and you have <span id="money"><%= @player.money %></span> sand dollars to spend.</p>
 
+<p>Current player's turn: <%= @game.current_team_id==0? "RED" : "BLUE" %>
 
-  <table class="map map-game" data-add-unit-path="<%= add_unit_game_path(@game) %>">
+  <table class="map map-game" data-add-unit-path="<%= add_unit_game_path(@game) %>" data-move-unit-path="<%= move_unit_game_path(@game) %>">
   	<%
   		x = 0
   		y = 0
@@ -26,13 +27,21 @@
   		</tr>
   </table>
 
+  <% if @player.team_id == @game.current_team_id %>
   <div class="tool-button" data-tool_tag="pointer"></div>
   <% for unit in Unit.all %>
     <div class="unit-button" data-unit_tag="<%=unit.tag %>"></div>
   <% end %>
   <br class="clear">
+  <div class="actions">
+    <%= button_to "End Turn", end_turn_game_path(@game) %>
+  </div>
+  <% end %>
 
 
+<input type="hidden" id="player_id" value="<%= @player.id %>">
+<input type="hidden" id="current_player_id" value="<%= @game.current_player.id %>">
+<input type="hidden" id="my_money" value="<%= @player.money %>">
 
 
 <%= link_to 'Back to Game List', games_path %>

@@ -4,6 +4,16 @@ class Tile < ActiveRecord::Base
 
 	default_scope :order => "y, x"
 
+	@path_checked = false
+
+	def path_checked!
+		@path_checked = true
+	end
+
+	def path_checked?
+		return @path_checked==false
+	end
+
 	def tile_type_tag
 		self.tile_type.tag
 	end

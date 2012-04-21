@@ -51,6 +51,7 @@ GameUnit
  	x
  	y
  	current_hitpoints
- 	has_moved
+ 	has_moved -- REMOVED
+ 	movement_left
  	has_attacked
 

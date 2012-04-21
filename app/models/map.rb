@@ -33,8 +33,10 @@ class Map < ActiveRecord::Base
   end
 
   def get_tile_at(x,y)
+    return nil if x < 0 or y < 0 or x >= self.width or y >= self.height
+
     if self.tiles.loaded?
-      return self.tiles[y*self.height + x]
+      return self.tiles[y*self.width + x]
     else
       return Tile.where(:map_id => self.id, :x => x, :y => y).first
     end

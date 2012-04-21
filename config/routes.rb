@@ -3,6 +3,8 @@ TestApp::Application.routes.draw do
   resources :games do
     member do
       get 'add_unit'
+      get 'move_unit'
+      post 'end_turn'
     end
   end
 
