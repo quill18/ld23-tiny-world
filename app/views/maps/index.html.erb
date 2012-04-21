@@ -1,0 +1,31 @@
+<h1>Listing maps</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Height</th>
+    <th>Width</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @maps.each do |map| %>
+  <tr>
+    <td><%= map.user %></td>
+    <td><%= map.name %></td>
+    <td><%= map.description %></td>
+    <td><%= map.height %></td>
+    <td><%= map.width %></td>
+    <td><%= link_to 'Show', map %></td>
+    <td><%= link_to 'Edit', edit_map_path(map) %></td>
+    <td><%= link_to 'Destroy', map, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Map', new_map_path %>

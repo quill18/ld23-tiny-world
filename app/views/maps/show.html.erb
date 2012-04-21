@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @map.user %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @map.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @map.description %>
+</p>
+
+<p>
+  <b>Height:</b>
+  <%= @map.height %>
+</p>
+
+<p>
+  <b>Width:</b>
+  <%= @map.width %>
+</p>
+
+
+<%= link_to 'Edit', edit_map_path(@map) %> |
+<%= link_to 'Back', maps_path %>

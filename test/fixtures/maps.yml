@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  name: MyString
+  description: MyText
+  height: 1
+  width: 1
+
+two:
+  user: 
+  name: MyString
+  description: MyText
+  height: 1
+  width: 1

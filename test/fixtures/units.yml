@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  is_bubble_walker: false
+  hitpoints: 1
+  damage: 1
+  defense: 1
+  range: 1
+
+two:
+  name: MyString
+  is_bubble_walker: false
+  hitpoints: 1
+  damage: 1
+  defense: 1
+  range: 1

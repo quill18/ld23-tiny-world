@@ -1,0 +1,49 @@
+<h1>Editing map</h1>
+
+<%= form_for(@map) do |f| %>
+  <% if @map.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@map.errors.count, "error") %> prohibited this map from being saved:</h2>
+
+      <ul>
+      <% @map.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+
+  <table class="map map-edit" data-tile-type-tags="<%= TileType.tags.to_json %>">
+  	<%
+  		x = 0
+  		y = 0
+  	%>
+  	<tr>
+  	<%= f.fields_for :tiles do |ft| %>
+  		<% if x >= @map.width 
+  			x = 0
+  			y += 1 %>
+  			</tr><tr>
+  		<% end %>
+  		<td class="tile" data-x="<%=x%>" data-y="<%=y%>" data-tile_type_tag="<%=ft.object.tile_type.tag %>"><%=ft.hidden_field :tile_type_tag%></td>
+  		<% x += 1 %>
+  	<% end %>
+  		</tr>
+  </table>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @map %> |
+<%= link_to 'Back', maps_path %>

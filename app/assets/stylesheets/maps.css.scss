@@ -1,0 +1,29 @@
+
+
+table.map {
+	border-collapse: collapse;
+	td.tile {
+		height: 32px;
+		width: 32px;
+		//border: 1px solid black;
+		padding: 0px;
+
+		background-image: url("tile_sheet.png");
+
+		&[data-tile_type_tag="open-water"] {
+			background-position: 0px 0px;
+		}
+
+		&[data-tile_type_tag="bubbles"] {
+			background-position: -32px 0px;
+		}
+
+		&[data-tile_type_tag="weeds"] {
+			background-position: -64px 0px;
+		}
+
+		&[data-tile_type_tag="logs"] {
+			background-position: -96px 0px;
+		}
+	}
+}

@@ -1,0 +1,65 @@
+TODO 
+
+
+Friday = The skeleton
+ - Map editor
+ - Data structures
+ - Implement a unit
+ - Default map size?
+
+
+Saturday = Complete game features.
+ - Start game
+ 	- 2 players
+ - Pick map
+ - Spawn initial units
+ - Resource gathering?!?		-> Sand Dollars. Food Pellets. Algae. Pearls.
+ - Purchase reinforcements
+ - Move units
+ - End turn
+ - Attack enemy unit
+ - Win condition
+ - Lose condition
+	- All units dead
+	- Base is destroyed
+ - Draw condition
+	- Time expired
+
+
+
+Sunday = Polish.
+ - Fill in missing sprites
+ - Elo rankings
+ - Sound
+ - Music
+ - Deployment tests
+
+
+--------------------
+
+krill, zooplankton, minnows
+
+jellyfish => tentacles = long-range attack
+
+spitting fish
+
+seahorses
+
+turtles (i lyk)
+
+lobsters
+
+shrimp => medics??
+
+crabs (hermit?)
+
+pufferfish
+
+mantarays
+
+sharks
+
+squid => ink attack
+
+swordfish
+

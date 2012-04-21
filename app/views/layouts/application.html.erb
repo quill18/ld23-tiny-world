@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tanks for all the fish? No. Just MY fish.</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<h1>Tanks for all the fish? No. Just MY fish!</h1>
+
+	<p><%= flash[:notice] %></p>
+	<p><%= flash[:alert] %></p>
+
+<% if user_signed_in? %>
+	<p>Hello <%= current_user.email %></p>
+<% else %>
+	<%= link_to "Log in!", new_user_session_path %>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>

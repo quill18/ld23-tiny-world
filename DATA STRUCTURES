@@ -1,0 +1,48 @@
+DATA STRUCTURES
+
+User
+
+Map
+	user_id => creator
+	name
+	description
+	height
+	width
+
+Tile
+	map_id
+	x
+	y
+	tile_type_id
+
+TileType
+	name
+	movement_cost 0 == impassible?
+	is_bubble_wall
+	blocks_los
+
+Unit
+	name
+	is_bubble_walker
+	hitpoints
+	damage
+	defense
+	range
+
+
+
+Game
+	map_id		-> Cloned/destructible?
+	current_team_id  -> Starts at 0 and counts up
+
+Player
+	user_id
+	team_id		-> 0 = blue 		1 = red?
+
+GameUnit
+ 	game_id
+ 	player_id => Could be nil for neutral map features
+ 	unit_id
+ 	x
+ 	y
+

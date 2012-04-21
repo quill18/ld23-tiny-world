@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  movement_cost: 1
+  is_bubble_wall: 1
+
+two:
+  movement_cost: 1
+  is_bubble_wall: 1
