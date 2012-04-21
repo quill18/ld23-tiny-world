@@ -28,9 +28,12 @@ Saturday = Complete game features.
  x Lose condition
 	x All units dead
 	x Base is destroyed
+ - Email when challenged? (Maybe just when a turn is ready.)
+ - Email when turn is ready
 
 
 Sunday = Polish.
+ - Vote up maps
  - COLOR CODE SPRITES!
  - Fill in missing sprites
  - Elo rankings
@@ -47,6 +50,8 @@ Sunday = Polish.
  - Draw condition?
 	- Time expired?
  - Resource gathering?!?		-> Sand Dollars. Food Pellets. Algae. Pearls.
+ - Test in Firefox/IE and on the Mac
+ - Matchmaking improvements
 
 
 --------------------

@@ -14,7 +14,10 @@
 	<p><%= flash[:alert] %></p>
 
 <% if user_signed_in? %>
-	<p>Hello <%= current_user.email %></p>
+	<p>Hello <%= current_user.nickname %> 
+		<%= link_to "[Account Settions]", edit_user_registration_path(current_user) %>
+		<%= link_to "[Logout]", destroy_user_session_path(current_user), :method => :delete %>
+	</p>
 <% else %>
 	<%= link_to "Log in!", new_user_session_path %>
 <% end %>

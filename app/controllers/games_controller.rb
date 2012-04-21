@@ -31,6 +31,8 @@ class GamesController < ApplicationController
   def new
     @game = Game.new
 
+    @game.map_id = params[:map_id]
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @game }
@@ -42,7 +44,9 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(params[:game])
 
+    params[:user_ids].unshift(current_user.id)
     team_id = 0
+
     for user_id in params[:user_ids]
       user = User.find(user_id)
       player = Player.new( :user => user, :team_id => team_id )

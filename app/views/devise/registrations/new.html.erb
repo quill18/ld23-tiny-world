@@ -1,0 +1,27 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <p>
+  	<b>Worried about privacy?</b>  Don't worry - we don't even email you to confirm your account.
+  	We only need it to let you know when it's your turn in a game or to recover a lost password.
+  	Still concerned? Just enter a fake address, we won't mind (you just might miss your turn!)
+  </p>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email %> <span></span></div>
+
+  <div><%= f.label :nickname %><br />
+  <%= f.text_field :nickname %> (how you'll be known publicly on the site)</div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%= render "links" %>

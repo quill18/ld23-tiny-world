@@ -3,6 +3,14 @@ class Map < ActiveRecord::Base
   has_many :tiles
   accepts_nested_attributes_for :tiles
 
+  validates :height, :width, :numericality => {  
+                              :only_integer => true, 
+                              :greater_than => 4, 
+                              :less_than_or_equal_to => 20 }
+
+
+  validates :name, :length => { :minimum => 3, :maximum => 40 }
+
   before_create :generate_tiles
 
   def generate_tiles

@@ -9,7 +9,7 @@
 
 <% @games.each do |game| %>
   <tr>
-    <td><%= game.players.map {|p| p.user.email}.join(", ") %></td>
+    <td><%= game.players.map {|p| p.user.nickname}.join(", ") %></td>
     <td><%= link_to 'Play!', game %></td>
     <td><%= link_to 'Edit', edit_game_path(game) %></td>
   </tr>

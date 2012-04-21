@@ -21,13 +21,10 @@
   </div>
 
   <div class="field">
-    <label>Player 1</label>
-    <%= select_tag "user_ids[]", options_from_collection_for_select(User.all, :id, :email) %>
-  </div>
-
-  <div class="field">
-  	<label>Player 2</label>
-  	<%= select_tag "user_ids[]", options_from_collection_for_select(User.all, :id, :email) %>
+  	<label>Who to challenge?</label>
+  	<%= select_tag "user_ids[]", options_from_collection_for_select(
+            User.where(['id <> ?', current_user.id]).order("nickname"),
+            :id, :nickname) %>
   </div>
 
   <div class="actions">
