@@ -1,12 +1,12 @@
 class Game < ActiveRecord::Base
-	has_many :players
+	has_many :players, :dependent => :destroy
 	validate :uniqueness_of_players
 
-	belongs_to :map
+	belongs_to :map, :dependent => :destroy
 
 	before_create :clone_map, :start_new_turn!
 
-	has_many :game_units
+	has_many :game_units, :dependent => :destroy
 
 	belongs_to :current_player, :class_name => "Player"
 
@@ -91,13 +91,15 @@ class Game < ActiveRecord::Base
 		fromTile = self.map.get_tile_at(fromX, fromY)
 		toTile = self.map.get_tile_at(toX, toY)
 
+		return {:message => "Unpassable terrain!"} unless game_unit.unit.can_enter_tile?(toTile)
+
 		movementLeft = game_unit.unit.speed
 
 		path = get_path(fromTile, toTile, movementLeft)
 
 		return {:message => "Pathfinding failed."} if path.nil?
 		
-		game_unit.movement_left -= 1
+		game_unit.movement_left -= toTile.tile_type.movement_cost
 		game_unit.x = path.last.x
 		game_unit.y = path.last.y
 
@@ -113,6 +115,9 @@ class Game < ActiveRecord::Base
 		other_game_unit.current_hitpoints -= damage
 		if other_game_unit.current_hitpoints <= 0
 			other_game_unit.destroy
+			player = self.players.where(:team_id => game_unit.team_id).first
+			player.kills += 1
+			player.save!
 		else
 			other_game_unit.save!
 		end
@@ -122,22 +127,32 @@ class Game < ActiveRecord::Base
 
 		game_unit.save!
 
-		return {:game_units => [game_unit, other_game_unit]}
+		return {
+			:game_units => [game_unit, other_game_unit], 
+			:kills => kill_totals,
+			:units => unit_totals
+		}
+	end
+
+	def kill_totals
+		t = {}
+		for p in self.players
+			t["team#{p.team_id}_kills"] = p.kills
+		end
+		return t #self.players.map {|p| {"team#{p.team_id}_kills" => p.kills} }
+	end
+
+	def unit_totals
+		t = {}
+		for p in self.players
+			t["team#{p.team_id}_units"] = game_units_for_player(p).length
+		end
+		return t
+		#return self.players.map {|p| {"team#{p.team_id}_units" => game_units_for_player(p).length } }
 	end
 
 	def get_game_unit_at(x,y)
 		return game_units.where(:x => x, :y => y).first
-	end
-
-	def end_turn!
-		self.current_team_id += 1
-		if self.current_team_id > max_team_id
-			self.current_team_id = 0
-		end
-
-		start_new_turn!()
-
-		self.save!
 	end
 
 	def castles_for_player(player)
@@ -148,8 +163,10 @@ class Game < ActiveRecord::Base
 		return self.map.tiles.where(:tile_type_id => tile_type)
 	end
 
+	def game_units_for_player(player)
+		return self.game_units.where(:team_id => player.team_id)
+	end
 
-	private
 	def get_path(fromTile, toTile, movementLeft)
 		return nil if movementLeft < 0
 
@@ -171,11 +188,55 @@ class Game < ActiveRecord::Base
 		return self.players.maximum(:team_id)
 	end
 
+	def end_turn!
+		# Flip castles
+		for game_unit in self.game_units.where(:team_id => self.current_team_id)
+			# Capture castles, if a unit is standing on one.
+			tile = self.map.get_tile_at(game_unit.x, game_unit.y)
+			if tile.tile_type.tag == "neutral_castle"
+				tile.tile_type = TileType.where(:tag => ("castle" + self.current_team_id.to_s)).first
+				tile.save!
+			elsif tile.tile_type.tag =~ /^castle(\d+)$/
+				if $1.to_i != self.current_team_id
+					tile.tile_type = TileType.where(:tag => "neutral_castle").first
+					tile.save!
+				end
+			end
+		end
+
+		self.current_team_id += 1
+		if self.current_team_id > max_team_id
+			self.current_team_id = 0
+		end
+
+		# Check for a winner
+		for player in self.players
+			if castles_for_player(player).length == 0 or game_units_for_player(player).length == 0
+				winning_player = self.players.where('team_id <> ?',player.team_id).first
+				self.winning_player_id = winning_player.id
+				self.current_team_id = -winning_player.team_id
+				break
+			end
+		end
+
+		unless self.winning_player_id.nil?
+			
+		end
+
+		start_new_turn!()
+
+		self.save!
+	end
+
 	def start_new_turn!
 		# Generate income
 		for player in self.players
-			player.money += castles_for_player(player).length * 5
+			if player.team_id == self.current_team_id
+				player.money += castles_for_player(player).length * 5
+				player.save!
+			end
 		end
+
 
 		# Reset all the units
 		for game_unit in self.game_units.where(:team_id => self.current_team_id)
@@ -183,6 +244,8 @@ class Game < ActiveRecord::Base
 			game_unit.has_attacked = false
 			game_unit.save!
 		end
+
+
 	end
 
 

@@ -120,34 +120,72 @@ function moveUnitTo(cell) {
 	waiting_on_ajax = true;
 	var jqxhr = $.get(url, { fromX: fromX, fromY: fromY, toX: x, toY: y }, function(results) {
 		waiting_on_ajax = false;
-		// Success
-		console.log("AJAX RESULTS:");
-		console.log(results);
-
-		var game_units = results.game_units;
-
-		if( game_units != null ) {
-			for(i=0; i < game_units.length; i++) {
-				var game_unit = game_units[i];
-				var unit = $("[data-unit_id="+game_unit.id+"]");
-				unit.detach();
-				if (game_unit.current_hitpoints > 0) {
-					var real_cell = $("td.tile[data-x="+game_unit.x+"][data-y="+game_unit.y+"]")
-					unit.appendTo(real_cell);
-				}
-				else {
-					// Something has died
-				}
-			}
-		}
-
-		if (results.message != null ) {
-			alert(results.message);
-		}
+		processJSON(results);
 	}).error(function() {
 		waiting_on_ajax = false;
 		alert("Server fail!");
 	});
+
+}
+
+function processJSON(results) {
+	// Success
+	console.log("AJAX RESULTS:");
+	console.log(results);
+
+	var game_units = results.game_units;
+
+	if( game_units != null ) {
+		for(i=0; i < game_units.length; i++) {
+
+			var game_unit = game_units[i];
+
+			// Find the unit if it already exists
+
+			var unit = $("[data-unit_id="+game_unit.id+"]");
+			unit.detach();
+
+			if(unit.length == 0) {
+				// We need to create the unit
+				unit = $('<div class="unit" data-unit_id="'+game_unit.id+'" data-unit_tag="'+game_unit.unit.tag+'" data-team_id="'+game_unit.team_id+'"></div>');
+
+			}
+
+			if (game_unit.current_hitpoints > 0) {
+				var real_cell = $("td.tile[data-x="+game_unit.x+"][data-y="+game_unit.y+"]")
+				unit.appendTo(real_cell);
+			}
+			else {
+				// Something has died
+			}
+		}
+	}
+
+	if (results.kills != null ) {
+		console.log("KILLS:");
+		console.log(results.kills);
+		for(var key in results.kills) {
+			$("#"+key).html(results.kills[key]);
+		}
+	}
+
+	if (results.units != null ) {
+		console.log("UNITS:");
+		console.log(results.units);
+		for(var key in results.units) {
+			$("#"+key).html(results.units[key]);
+		}
+	}
+
+	if (results.money != null ) {
+		for(var key in results.money) {
+			$("#"+key).html(results.money[key]);
+		}
+	}
+
+	if (results.message != null ) {
+		alert(results.message);
+	}
 
 }
 
@@ -166,7 +204,10 @@ function addUnit(cell) {
 	var jqxhr = $.get(url, { x: x, y: y, unit_tag: new_tag }, function(results) {
 		waiting_on_ajax = false;
 		// Success
-		console.log(results);
+
+		processJSON(results);
+
+		/*console.log(results);
 
 		var game_units = results.game_units;
 
@@ -183,7 +224,7 @@ function addUnit(cell) {
 
 		if (results.message != null ) {
 			alert(results.message);
-		}
+		}*/
 	}).error(function() {
 		waiting_on_ajax = false;
 		alert("Server fail!");

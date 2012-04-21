@@ -67,7 +67,7 @@ class GamesController < ApplicationController
     get_game
 
     response = @game.add_unit!(params[:x].to_i, params[:y].to_i, params[:unit_tag], @player)
-    response["money"] = @player.money
+    response["money"] = { "team#{@player.team_id}_money" => @player.money }
 
     respond_to do |format|
       format.json { render json: response.to_json( :include => :unit ) }

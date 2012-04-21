@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120421191859) do
+ActiveRecord::Schema.define(:version => 20120421223255) do
 
   create_table "game_units", :force => true do |t|
     t.integer  "game_id"
@@ -32,9 +32,10 @@ ActiveRecord::Schema.define(:version => 20120421191859) do
 
   create_table "games", :force => true do |t|
     t.integer  "map_id"
-    t.integer  "current_team_id", :default => 0
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.integer  "current_team_id",   :default => 0
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "winning_player_id"
   end
 
   add_index "games", ["map_id"], :name => "index_games_on_map_id"
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20120421191859) do
     t.datetime "updated_at",                :null => false
     t.integer  "team_id"
     t.integer  "money",      :default => 0
+    t.integer  "kills",      :default => 0
   end
 
   add_index "players", ["game_id"], :name => "index_players_on_game_id"

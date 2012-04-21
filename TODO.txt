@@ -22,16 +22,16 @@ Saturday = Complete game features.
  x Attack enemy unit
  x Units die
  x Clone map at start of game and/or prevent editing once the game is happening?
- - Resource gathering?!?		-> Sand Dollars. Food Pellets. Algae. Pearls.
- - Win condition
- - Lose condition
-	- All units dead
-	- Base is destroyed
- - Draw condition
-	- Time expired
+ x Income from castles
+ x Capturing castles
+ x Win condition
+ x Lose condition
+	x All units dead
+	x Base is destroyed
 
 
 Sunday = Polish.
+ - COLOR CODE SPRITES!
  - Fill in missing sprites
  - Elo rankings
  - Sound
@@ -39,7 +39,14 @@ Sunday = Polish.
  - Deployment tests
  - Max size on maps
  - critical hits, glancing blows
+ - Neutral castles have neutral enemies
+ - Defending units hit back
+ - Terrain (weeds) bonus to defense
+ - Maintenance cost for units?
  - Highlight legal tiles for unit placement and movement
+ - Draw condition?
+	- Time expired?
+ - Resource gathering?!?		-> Sand Dollars. Food Pellets. Algae. Pearls.
 
 
 --------------------
