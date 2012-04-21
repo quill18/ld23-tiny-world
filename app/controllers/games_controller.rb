@@ -66,9 +66,19 @@ class GamesController < ApplicationController
 
   def add_unit
     # Ensure that we have the right player
+    @game = Game.find(params[:id])
+    @player = @game.player_from_user(current_user)
 
-    respond_to do |format|
-      format.json { render json: { unit_tag: "goldfish", money: 999 } }
+    @game_unit = @game.add_unit!(params[:x], params[:y], params[:unit_tag], @player)
+
+    if @game_unit.class == GameUnit
+      respond_to do |format|
+        format.json { render json: { unit_tag: @game_unit.unit.tag, money: @player.money } }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { unit_tag: nil, message: @game_unit } }
+      end
     end
   end
 

@@ -14,8 +14,8 @@ namespace :populate do
 		TileType.create(:name => "Bubbles", :tag => "bubbles", :is_bubble_wall => true)
 		TileType.create(:name => "Weeds", :tag => "weeds", :movement_cost => 2)
 		TileType.create(:name => "Logs", :tag => "logs", :movement_cost => 0)
-		TileType.create(:name => "Red Castle", :tag => "red_castle")
-		TileType.create(:name => "Blue Castle", :tag => "blue_castle")
+		TileType.create(:name => "Red Castle", :tag => "castle0")
+		TileType.create(:name => "Blue Castle", :tag => "castle1")
 		TileType.create(:name => "Neutral Castle", :tag => "neutral_castle")
 	end
 

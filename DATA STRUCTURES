@@ -31,6 +31,7 @@ Unit
 	defense
 	range
 	cost
+	speed
 
 
 Game
@@ -49,4 +50,7 @@ GameUnit
  	unit_id
  	x
  	y
+ 	current_hitpoints
+ 	has_moved
+ 	has_attacked
 

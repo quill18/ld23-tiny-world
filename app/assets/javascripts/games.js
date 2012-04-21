@@ -26,10 +26,13 @@ $(function() {
 				// Success
 				console.log(results);
 
-				if( results.unit_tag.length > 0) {
+				if( results.unit_tag !== null) {
 					console.log($(this));
 					$('<div class="unit" data-unit_tag="'+results.unit_tag+'"></div>').appendTo(cell);
 					$("#money").html(results.money);
+				}
+				else {
+					alert(results.message);
 				}
 			}).error(function() {
 				alert("Server fail!");

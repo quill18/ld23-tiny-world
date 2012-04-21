@@ -36,7 +36,7 @@ class Map < ActiveRecord::Base
     if self.tiles.loaded?
       return self.tiles[y*self.height + x]
     else
-      return Tile.where(:map_id => self.id, :x => x, :y => y)
+      return Tile.where(:map_id => self.id, :x => x, :y => y).first
     end
   end
 end
