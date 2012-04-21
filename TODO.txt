@@ -2,13 +2,14 @@ TODO
 
 
 Friday = The skeleton
- - Map editor
- - Data structures
- - Implement a unit
+ x Map editor
+ x Data structures
+ x Implement a unit
  - Default map size?
 
 
 Saturday = Complete game features.
+ x Ability to place a "base" for each team in the map editor
  - Start game
  	- 2 players
  - Pick map
@@ -24,7 +25,7 @@ Saturday = Complete game features.
 	- Base is destroyed
  - Draw condition
 	- Time expired
-
+ - Clone map at start of game and/or prevent editing once the game is happening?
 
 
 Sunday = Polish.

@@ -1,0 +1,33 @@
+<h1>New game</h1>
+
+<%= form_for(@game) do |f| %>
+  <% if @game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+      <% @game.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>Dummy placeholder for matchmaking.</p>
+
+  <div class="field">
+  	<label>Player 1</label>
+  	<%= select_tag "user_ids[]", options_from_collection_for_select(User.all, :id, :email) %>
+  </div>
+
+  <div class="field">
+  	<label>Player 2</label>
+  	<%= select_tag "user_ids[]", options_from_collection_for_select(User.all, :id, :email) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', games_path %>

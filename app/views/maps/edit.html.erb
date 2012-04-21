@@ -22,7 +22,13 @@
     <%= f.text_area :description %>
   </div>
 
-  <table class="map map-edit" data-tile-type-tags="<%= TileType.tags.to_json %>">
+  <% for tile_type in TileType.all %>
+    <div class="tile-button" data-tile_type_tag="<%=tile_type.tag %>"></div>
+  <% end %>
+
+  <br class='clear'>
+
+  <table class="map map-edit">
   	<%
   		x = 0
   		y = 0
@@ -41,7 +47,8 @@
   </table>
 
   <div class="actions">
-    <%= f.submit %>
+    <input type="button" value="Clear Map" id="clear-map">
+    <%= f.submit "Save Changes" %>
   </div>
 <% end %>
 

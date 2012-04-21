@@ -1,4 +1,9 @@
 namespace :populate do
+	task :delete_maps => :environment do
+		puts "Deleting maps"
+		Map.destroy_all
+	end
+
 	task :tile_types => :environment do
 		puts "Creating tile_types"
 
@@ -9,6 +14,8 @@ namespace :populate do
 		TileType.create(:name => "Bubbles", :tag => "bubbles", :is_bubble_wall => true)
 		TileType.create(:name => "Weeds", :tag => "weeds", :movement_cost => 2)
 		TileType.create(:name => "Logs", :tag => "logs", :movement_cost => 0)
+		TileType.create(:name => "Red Castle", :tag => "red_castle")
+		TileType.create(:name => "Blue Castle", :tag => "blue_castle")
 	end
 
 	task :units => :environment do

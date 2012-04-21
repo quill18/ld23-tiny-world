@@ -25,5 +25,52 @@ table.map {
 		&[data-tile_type_tag="logs"] {
 			background-position: -96px 0px;
 		}
+
+		&[data-tile_type_tag="red_castle"] {
+			background-position: -128px 0px;
+		}
+
+		&[data-tile_type_tag="blue_castle"] {
+			background-position: -160px 0px;
+		}
 	}
+}
+
+div.tile-button {
+	float: left;
+	height: 32px;
+	width: 32px;
+
+	border: 4px solid black;
+
+	&.active {
+		border-color: green;
+	}
+
+	background-image: url("tile_sheet.png");
+
+	&[data-tile_type_tag="open-water"] {
+		background-position: 0px 0px;
+	}
+
+	&[data-tile_type_tag="bubbles"] {
+		background-position: -32px 0px;
+	}
+
+	&[data-tile_type_tag="weeds"] {
+		background-position: -64px 0px;
+	}
+
+	&[data-tile_type_tag="logs"] {
+		background-position: -96px 0px;
+	}
+
+	&[data-tile_type_tag="red_castle"] {
+		background-position: -128px 0px;
+	}
+
+	&[data-tile_type_tag="blue_castle"] {
+		background-position: -160px 0px;
+	}
+
 }

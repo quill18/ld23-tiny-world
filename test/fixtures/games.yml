@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  map_id: 1
+  current_team_id: 1
+
+two:
+  map_id: 1
+  current_team_id: 1

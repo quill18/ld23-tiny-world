@@ -1,6 +1,7 @@
 DATA STRUCTURES
 
 User
+	nickname
 
 Map
 	user_id => creator
@@ -38,10 +39,11 @@ Game
 Player
 	user_id
 	team_id		-> 0 = blue 		1 = red?
+	game_id
 
 GameUnit
  	game_id
- 	player_id => Could be nil for neutral map features
+ 	team_id => Could be nil for neutral map features
  	unit_id
  	x
  	y

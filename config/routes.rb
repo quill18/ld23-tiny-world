@@ -1,5 +1,7 @@
 TestApp::Application.routes.draw do
+
   resources :maps
+  resources :games
 
   get "welcome/index"
 

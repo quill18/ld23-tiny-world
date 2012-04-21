@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th>User</th>
+    <th>Author</th>
     <th>Name</th>
     <th>Description</th>
     <th>Height</th>
@@ -14,7 +14,7 @@
 
 <% @maps.each do |map| %>
   <tr>
-    <td><%= map.user %></td>
+    <td><%= map.user.email %></td>
     <td><%= map.name %></td>
     <td><%= map.description %></td>
     <td><%= map.height %></td>
