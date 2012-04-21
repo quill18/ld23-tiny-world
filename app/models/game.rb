@@ -39,18 +39,18 @@ class Game < ActiveRecord::Base
 
 	def add_unit!(x, y, unit_tag, player)
 		# Blocked by unit?
-		return "Blocked by unit!" unless get_game_unit_at(x,y).nil?
+		return {:message => "Blocked by unit!"} unless get_game_unit_at(x,y).nil?
 
 		unit = Unit.where(:tag => unit_tag).first
 		tile = self.map.get_tile_at(x,y)
 
-		return "Not enough money!" if player.money < unit.cost
+		return {:message => "Not enough money!"} if player.money < unit.cost
 
 		# Adjacent to castle?
-		return "Not adjacent to castle!" unless tile.adjacent_to_castle?(player.team_id)
+		return {:message => "Not adjacent to castle!"} unless tile.adjacent_to_castle?(player.team_id)
 
 		# Blocked by unpassable terrain?
-		return "Unpassable terrain!" unless unit.can_enter_tile?(tile)
+		return {:message => "Unpassable terrain!"} unless unit.can_enter_tile?(tile)
 
 	    player.money -= unit.cost
 	    player.save!
@@ -67,19 +67,26 @@ class Game < ActiveRecord::Base
 
 		self.game_units << game_unit
 		self.save!
-		return game_unit
+		return {:game_units=> [game_unit]}
 	end
 
 	def move_unit!(fromX, fromY, toX, toY, player)
 		game_unit = get_game_unit_at(fromX, fromY)
 
-		return "No unit at (#{x},#{y})!  JavaScript fail." if game_unit.nil?
+		return {:message => "No unit at (#{x},#{y})!  JavaScript fail."} if game_unit.nil?
 
-		return "Not your unit!" if game_unit.team_id != self.current_team_id
+		return {:message => "Not your unit!"} if game_unit.team_id != self.current_team_id
 
-		return "Out of movement!" if game_unit.movement_left <= 0
+		return {:message => "Out of movement!"} if game_unit.movement_left <= 0
 
-		return "Combat code not implemented!" unless get_game_unit_at(toX, toY).nil?
+		other_game_unit = get_game_unit_at(toX, toY)
+		unless other_game_unit.nil?
+			if other_game_unit.team_id == game_unit.team_id
+				return {:message => "One of your units is in the way!"}
+			else
+				return fight_unit!(game_unit, other_game_unit)
+			end
+		end
 
 		fromTile = self.map.get_tile_at(fromX, fromY)
 		toTile = self.map.get_tile_at(toX, toY)
@@ -88,7 +95,7 @@ class Game < ActiveRecord::Base
 
 		path = get_path(fromTile, toTile, movementLeft)
 
-		return false if path.nil?
+		return {:message => "Pathfinding failed."} if path.nil?
 		
 		game_unit.movement_left -= 1
 		game_unit.x = path.last.x
@@ -96,7 +103,26 @@ class Game < ActiveRecord::Base
 
 		game_unit.save!
 
-		return game_unit
+		return {:game_units => [game_unit]}
+	end
+
+	def fight_unit!(game_unit, other_game_unit)
+
+		damage = game_unit.unit.damage - other_game_unit.unit.defense
+
+		other_game_unit.current_hitpoints -= damage
+		if other_game_unit.current_hitpoints <= 0
+			other_game_unit.destroy
+		else
+			other_game_unit.save!
+		end
+
+		game_unit.has_attacked = true
+		game_unit.movement_left = 0
+
+		game_unit.save!
+
+		return {:game_units => [game_unit, other_game_unit]}
 	end
 
 	def get_game_unit_at(x,y)

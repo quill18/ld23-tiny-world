@@ -54,6 +54,9 @@ function setupUnitClicking() {
 		if(isUnitBuildingMode())
 			return;
 
+		if($(this).data("team_id") != parseInt($("#current_team_id").val()))
+			return;
+
 		// FIXME: Can only select our own units!
 
 		e.preventDefault();
@@ -118,17 +121,27 @@ function moveUnitTo(cell) {
 	var jqxhr = $.get(url, { fromX: fromX, fromY: fromY, toX: x, toY: y }, function(results) {
 		waiting_on_ajax = false;
 		// Success
+		console.log("AJAX RESULTS:");
 		console.log(results);
 
-		if( results.x != null && results.y != null) {
-			unit.detach();
-			var real_cell = $("td.tile[data-x="+results.x+"][data-y="+results.y+"]")
-			unit.appendTo(real_cell);
+		var game_units = results.game_units;
+
+		if( game_units != null ) {
+			for(i=0; i < game_units.length; i++) {
+				var game_unit = game_units[i];
+				var unit = $("[data-unit_id="+game_unit.id+"]");
+				unit.detach();
+				if (game_unit.current_hitpoints > 0) {
+					var real_cell = $("td.tile[data-x="+game_unit.x+"][data-y="+game_unit.y+"]")
+					unit.appendTo(real_cell);
+				}
+				else {
+					// Something has died
+				}
+			}
 		}
-		else if(results.message == false) {
-			// do nothing
-		}
-		else {
+
+		if (results.message != null ) {
 			alert(results.message);
 		}
 	}).error(function() {
@@ -155,14 +168,21 @@ function addUnit(cell) {
 		// Success
 		console.log(results);
 
-		if( results.unit_tag != null) {
-			console.log($(this));
-			$('<div class="unit" data-unit_tag="'+results.unit_tag+'"></div>').appendTo(cell);
-			$("#money").html(results.money);
-			$("#my_money").val(results.money);
-			setupUnitClicking();
-		}
-		else {
+		var game_units = results.game_units;
+
+		if( game_units != null ) {
+			for(i=0; i < game_units.length; i++) {
+				var game_unit = game_units[i];
+				var real_cell = $("td.tile[data-x="+game_unit.x+"][data-y="+game_unit.y+"]");
+				$('<div class="unit" data-unit_id="'+game_unit.id+'" data-unit_tag="'+game_unit.unit.tag+'" data-team_id="'+$("#current_player_id").val()+'"></div>').appendTo(real_cell);
+			}
+		}			
+
+		$("#money").html(results.money);
+		$("#my_money").val(results.money);
+		setupUnitClicking();
+
+		if (results.message != null ) {
 			alert(results.message);
 		}
 	}).error(function() {

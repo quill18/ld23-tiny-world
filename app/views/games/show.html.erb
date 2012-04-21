@@ -19,7 +19,7 @@
   		<td class="tile" data-x="<%=x%>" data-y="<%=y%>" data-tile_type_tag="<%=tile.tile_type.tag %>">
         <% game_unit = @game.get_game_unit_at(x,y) %>
         <% unless game_unit.nil? %>
-          <div class="unit" data-unit_tag="<%=game_unit.unit.tag%>"></div>
+          <div class="unit" data-unit_id="<%=game_unit.id%>" data-unit_tag="<%=game_unit.unit.tag%>" data-team_id="<%=game_unit.team_id%>"></div>
         <% end %>
       </td>
   		<% x += 1 %>
@@ -41,6 +41,7 @@
 
 <input type="hidden" id="player_id" value="<%= @player.id %>">
 <input type="hidden" id="current_player_id" value="<%= @game.current_player.id %>">
+<input type="hidden" id="current_team_id" value="<%= @game.current_team_id %>">
 <input type="hidden" id="my_money" value="<%= @player.money %>">
 
 

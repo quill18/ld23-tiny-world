@@ -10,9 +10,9 @@ Friday = The skeleton
 
 Saturday = Complete game features.
  x Ability to place a "base" for each team in the map editor
- - Start game
- 	- 2 players
- - Pick map
+ x Start game
+ 	x 2 players
+ x Pick map
  x Spawn initial units
  - Resource gathering?!?		-> Sand Dollars. Food Pellets. Algae. Pearls.
  x Purchase reinforcements
@@ -20,7 +20,8 @@ Saturday = Complete game features.
  x Movement restrictions
  x End turn
  x JavaScript is aware of teams
- - Attack enemy unit
+ x Attack enemy unit
+ x Units die
  - Win condition
  - Lose condition
 	- All units dead
@@ -37,6 +38,7 @@ Sunday = Polish.
  - Music
  - Deployment tests
  - Max size on maps
+ - critical hits, glancing blows
  - Highlight legal tiles for unit placement and movement
 
 

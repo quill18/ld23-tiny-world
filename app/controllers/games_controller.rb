@@ -66,32 +66,31 @@ class GamesController < ApplicationController
   def add_unit
     get_game
 
-    @game_unit = @game.add_unit!(params[:x].to_i, params[:y].to_i, params[:unit_tag], @player)
+    response = @game.add_unit!(params[:x].to_i, params[:y].to_i, params[:unit_tag], @player)
+    response["money"] = @player.money
 
-    if @game_unit.class == GameUnit
-      respond_to do |format|
-        format.json { render json: { unit_tag: @game_unit.unit.tag, money: @player.money } }
-      end
-    else
-      respond_to do |format|
-        format.json { render json: { message: @game_unit } }
-      end
+    respond_to do |format|
+      format.json { render json: response.to_json( :include => :unit ) }
     end
+
+#    if @game_unit.class == GameUnit
+#      respond_to do |format|
+#        format.json { render json: { unit_tag: @game_unit.unit.tag, money: @player.money } }
+#      end
+#    else
+#      respond_to do |format|
+#        format.json { render json: { message: @game_unit } }
+#      end
+#    end
   end
 
   def move_unit
     get_game
 
-    @game_unit = @game.move_unit!(params[:fromX].to_i, params[:fromY].to_i, params[:toX].to_i, params[:toY].to_i, @player)
+    response = @game.move_unit!(params[:fromX].to_i, params[:fromY].to_i, params[:toX].to_i, params[:toY].to_i, @player)
 
-    if @game_unit.class == GameUnit
-      respond_to do |format|
-        format.json { render json: { x: @game_unit.x, y: @game_unit.y } }
-      end
-    else
-      respond_to do |format|
-        format.json { render json: { message: @game_unit } }
-      end
+    respond_to do |format|
+      format.json { render json: response }
     end
   end
 
