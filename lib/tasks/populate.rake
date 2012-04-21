@@ -16,6 +16,7 @@ namespace :populate do
 		TileType.create(:name => "Logs", :tag => "logs", :movement_cost => 0)
 		TileType.create(:name => "Red Castle", :tag => "red_castle")
 		TileType.create(:name => "Blue Castle", :tag => "blue_castle")
+		TileType.create(:name => "Neutral Castle", :tag => "neutral_castle")
 	end
 
 	task :units => :environment do

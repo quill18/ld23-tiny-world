@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120421132011) do
+ActiveRecord::Schema.define(:version => 20120421142143) do
 
   create_table "games", :force => true do |t|
     t.integer  "map_id"
@@ -28,8 +28,10 @@ ActiveRecord::Schema.define(:version => 20120421132011) do
     t.text     "description"
     t.integer  "height"
     t.integer  "width"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "starting_money", :default => 50
+    t.integer  "real_map_id"
   end
 
   add_index "maps", ["user_id"], :name => "index_maps_on_user_id"
@@ -37,9 +39,10 @@ ActiveRecord::Schema.define(:version => 20120421132011) do
   create_table "players", :force => true do |t|
     t.integer  "user_id"
     t.integer  "game_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.integer  "team_id"
+    t.integer  "money",      :default => 0
   end
 
   add_index "players", ["game_id"], :name => "index_players_on_game_id"
@@ -81,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20120421132011) do
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
     t.string   "tag"
+    t.integer  "cost",             :default => 10
   end
 
   add_index "units", ["tag"], :name => "index_units_on_tag"

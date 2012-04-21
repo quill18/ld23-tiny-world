@@ -2,7 +2,7 @@ class MapsController < ApplicationController
   # GET /maps
   # GET /maps.json
   def index
-    @maps = Map.all
+    @maps = Map.where(:real_map_id => nil)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -95,7 +95,8 @@ class MapsController < ApplicationController
   private
   def get_map
     @map = Map.find(params[:id], :include => "tiles")
-    raise if @map.user != current_user
+    raise "Can't change someone else's map!" if @map.user != current_user
+    raise "This map is a clone for a game and can't be modified" unless @map.real_map_id.nil?
     return @map
   end
 end

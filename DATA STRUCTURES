@@ -9,6 +9,7 @@ Map
 	description
 	height
 	width
+	starting_money
 
 Tile
 	map_id
@@ -29,7 +30,7 @@ Unit
 	damage
 	defense
 	range
-
+	cost
 
 
 Game
@@ -40,6 +41,7 @@ Player
 	user_id
 	team_id		-> 0 = blue 		1 = red?
 	game_id
+	money
 
 GameUnit
  	game_id

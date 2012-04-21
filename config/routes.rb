@@ -1,7 +1,10 @@
 TestApp::Application.routes.draw do
 
-  resources :maps
-  resources :games
+  resources :games do
+    member do
+      get 'add_unit'
+    end
+  end
 
   get "welcome/index"
 

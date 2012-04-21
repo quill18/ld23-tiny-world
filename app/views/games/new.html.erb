@@ -16,8 +16,13 @@
   <p>Dummy placeholder for matchmaking.</p>
 
   <div class="field">
-  	<label>Player 1</label>
-  	<%= select_tag "user_ids[]", options_from_collection_for_select(User.all, :id, :email) %>
+    <label>Map</label>
+    <%= f.select :map_id, Map.where(:real_map_id => nil).map {|m| [m.name, m.id]} %>
+  </div>
+
+  <div class="field">
+    <label>Player 1</label>
+    <%= select_tag "user_ids[]", options_from_collection_for_select(User.all, :id, :email) %>
   </div>
 
   <div class="field">

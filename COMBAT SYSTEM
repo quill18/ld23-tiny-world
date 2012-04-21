@@ -6,3 +6,17 @@ COMBAT SYSTEM
 
 Defense = Damage Reduction
 
+------------------------------------------
+
+GAME SETUP
+Spawn map => Clone the map so it can't be altered outside of the game and so that we can alter it inside the game!
+Players start with a certain number of resources
+No units
+
+ON YOUR TURN
+Get income for every base (this includes your HQs and any neutral bases you have units on)
+Can spend money to purchase units => New units can't move/attack on their first turn.
+	-> Can only deploy to the first 3 columns on your side?
+Move units
+Do attacks
+

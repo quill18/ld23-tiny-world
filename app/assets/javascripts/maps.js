@@ -1,4 +1,5 @@
 $(function() {
+	/*  MAP EDITING FUNCTIONS   */
 	$("table.map-edit").each(function() {
 		$(this).find("td.tile").on("click", function() {
 			var new_tag = $(".tile-button.active").attr("data-tile_type_tag");

@@ -1,0 +1,50 @@
+
+
+@mixin unit-sheet {
+	background-image: url("unit_sheet.png");
+
+	&[data-unit_tag="goldfish"] {
+		background-position: 0px 0px;
+	}
+
+	&[data-unit_tag="seahorse"] {
+		background-position: -32px 0px;
+	}
+
+	&[data-unit_tag="turtle"] {
+		background-position: -64px 0px;
+	}
+
+	&[data-unit_tag="swordfish"] {
+		background-position: -96px 0px;
+	}
+}
+
+
+table.map {
+	border-collapse: collapse;
+	div.unit {
+		height: 32px;
+		width: 32px;
+		//border: 1px solid black;
+		margin: 0px;
+		padding: 0px;
+
+		@include unit-sheet;
+	}
+}
+
+div.unit-button {
+	float: left;
+	height: 32px;
+	width: 32px;
+
+	border: 4px solid black;
+
+	&.active {
+		border-color: green;
+	}
+
+	@include unit-sheet;
+
+}

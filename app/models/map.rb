@@ -6,7 +6,10 @@ class Map < ActiveRecord::Base
   before_create :generate_tiles
 
   def generate_tiles
-  	self.tiles.destroy
+  	unless self.real_map_id.nil?
+      clone_tiles_from_parent
+      return
+    end
 
   	default_tile_type = TileType.first	# Open Water
 
@@ -19,6 +22,14 @@ class Map < ActiveRecord::Base
 	  		self.tiles << t
   		end
   	end
+  end
+
+  def clone_tiles_from_parent
+    parent_map = Map.find(self.real_map_id)
+
+    for tile in parent_map.tiles
+      self.tiles << tile.dup
+    end
   end
 
   def get_tile_at(x,y)

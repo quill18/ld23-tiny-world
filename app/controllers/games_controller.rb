@@ -13,7 +13,13 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
-    @game = Game.find(params[:id])
+    # Right now anyone can watch anyone's game, which I think is fine -- so long as they can't modify anything.
+    # Riot Games: 2 years to add spectator mode
+    # Quill18: About 4 hours into the project.
+
+    @game = Game.find(params[:id], :include => [{:map => :tiles}])
+
+    @player = @game.players.where(:user_id => current_user.id).first
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,6 +47,7 @@ class GamesController < ApplicationController
     for user_id in params[:user_ids]
       user = User.find(user_id)
       player = Player.new( :user => user, :team_id => team_id )
+      player.money = @game.map.starting_money
       team_id += 1
       @game.players << player
     end
@@ -54,6 +61,14 @@ class GamesController < ApplicationController
         format.html { render action: "new" }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def add_unit
+    # Ensure that we have the right player
+
+    respond_to do |format|
+      format.json { render json: { unit_tag: "goldfish", money: 999 } }
     end
   end
 

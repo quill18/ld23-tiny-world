@@ -1,8 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Game goes here. That should be the easy part right?</h1>
+<p>You are the <%= @player.team_id==0? "RED" : "BLUE" %> team and you have <span id="money"><%= @player.money %></span> sand dollars to spend.</p>
 
-<h1>AFK: BREAKFAST!!!</h1>
 
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+  <table class="map map-game" data-add-unit-path="<%= add_unit_game_path(@game) %>">
+  	<%
+  		x = 0
+  		y = 0
+  	%>
+  	<tr>
+  	<% for tile in @game.map.tiles %>
+  		<% if x >= @game.map.width 
+  			x = 0
+  			y += 1 %>
+  			</tr><tr>
+  		<% end %>
+  		<td class="tile" data-x="<%=x%>" data-y="<%=y%>" data-tile_type_tag="<%=tile.tile_type.tag %>"></td>
+  		<% x += 1 %>
+  	<% end %>
+  		</tr>
+  </table>
+
+  <div class="tool-button" data-tool_tag="pointer"></div>
+  <% for unit in Unit.all %>
+    <div class="unit-button" data-unit_tag="<%=unit.tag %>"></div>
+  <% end %>
+  <br class="clear">
+
+
+
+
+<%= link_to 'Back to Game List', games_path %>
