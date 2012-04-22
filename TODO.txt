@@ -37,6 +37,7 @@ Saturday = Complete game features.
  - Win rating
  - Surrender Button
  - Random/Rated Matchmaking
+ - AJAX progress indicator
 
 Sunday = Polish.
  - COLOR CODE SPRITES!
