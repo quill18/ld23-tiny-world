@@ -1,41 +1,47 @@
-<h1>Leaderboards</h1>
+<div class="container">
+	<h1>Leaderboards</h1>
 
-<div class="user_search">
-	<%= form_tag :action => stats_search_path do %>
-		<input type='text' name='search' placeholder='Search for a user by nickname.'>
-		<input type='submit' value='Go!'>
-	<% end %>
-</div>
 
-<div class="leaderboard">
-	<h1>Top 20 Users by Elo Rating</h1>
-	<table>
-		<tr>
-			<th>Nickname</th>
-			<th>Elo Rating</th>
-		</tr>
-		<% for user in User.order("elo DESC").limit(20) %>
-		<tr>
-			<td><%= user.nickname %></td>
-			<td><%= user.elo %></td>
-		</tr>
+	<div class="user_search">
+		<%= form_tag :action => stats_search_path do %>
+			<input type='text' name='search' placeholder='Search for a user by nickname.'>
+			<input type='submit' value='Go!'>
 		<% end %>
-	</table>
+	</div>
+
+	<div class="row">
+		<div class="leaderboard span4">
+			<h1>Top 20 Users by Elo Rating</h1>
+			<table class="table striped-table">
+				<tr>
+					<th>Nickname</th>
+					<th>Elo Rating</th>
+				</tr>
+				<% for user in User.order("elo DESC").limit(20) %>
+				<tr>
+					<td><%= user.nickname %></td>
+					<td><%= user.elo %></td>
+				</tr>
+				<% end %>
+			</table>
+		</div>
+
+		<div class="leaderboard span4 offset4">
+			<h1>Top 20 Users by XP</h1>
+			<table class="table striped-table">
+				<tr>
+					<th>Nickname</th>
+					<th>XP</th>
+				</tr>
+				<% for user in User.order("xp DESC").limit(20) %>
+				<tr>
+					<td><%= user.nickname %></td>
+					<td><%= user.xp %></td>
+				</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
 </div>
 
-<div class="leaderboard">
-	<h1>Top 20 Users by XP</h1>
-	<table>
-		<tr>
-			<th>Nickname</th>
-			<th>XP</th>
-		</tr>
-		<% for user in User.order("xp DESC").limit(20) %>
-		<tr>
-			<td><%= user.nickname %></td>
-			<td><%= user.xp %></td>
-		</tr>
-		<% end %>
-	</table>
-</div>
-
+<br class="clear">

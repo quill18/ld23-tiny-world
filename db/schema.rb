@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422230556) do
+ActiveRecord::Schema.define(:version => 20120422234001) do
 
   create_table "game_units", :force => true do |t|
     t.integer  "game_id"
@@ -155,7 +155,12 @@ ActiveRecord::Schema.define(:version => 20120422230556) do
     t.float    "win_ratio",               :default => 0.0
   end
 
+  add_index "users", ["elo"], :name => "index_users_on_elo"
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["loses"], :name => "index_users_on_loses"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["win_ratio"], :name => "index_users_on_win_ratio"
+  add_index "users", ["wins"], :name => "index_users_on_wins"
+  add_index "users", ["xp"], :name => "index_users_on_xp"
 
 end
