@@ -1,13 +1,11 @@
 <h2>Game #<%=@game.id%> on <%=@game.map.name%> by <%= n(@game.map.user) %></h2>
 
+<div class="game-container">
+	<%= render :partial => "game_sidepanel" %>
+	<%= render :partial => "game_tools" %>
+	<%= render :partial => "game_map" %>
+</div>
 
-<%= render :partial => "game_sidepanel" %>
-<%= render :partial => "game_tools" %>
-<%= render :partial => "game_map" %>
-
-
-
-
-
+<br class="clear">
 
 <%= link_to 'Back to Game List', games_path %>

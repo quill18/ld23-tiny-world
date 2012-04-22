@@ -119,6 +119,18 @@ function setupUnitClicking() {
 	$("table.map-game div.unit").on("mouseleave", function(e) {
 		$("div.unit_info").hide();
 	});
+
+	$("div.game_tools div.unit-button").off("mouseenter");
+	$("div.game_tools div.unit-button").on("mouseenter", function(e) {
+		$("div.unit_info").hide();
+		var tag = $(this).attr("data-unit_tag");
+		$("div.unit_info[data-unit_tag="+tag+"]").show();
+	});
+
+	$("div.game_tools div.unit-button").off("mouseleave");
+	$("div.game_tools div.unit-button").on("mouseleave", function(e) {
+		$("div.unit_info").hide();
+	});
 }
 
 function isUnitBuildingMode() {

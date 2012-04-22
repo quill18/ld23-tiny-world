@@ -1,13 +1,18 @@
 	<% for team_id in 0..1 %>
+<div class="scoreboard team<%=team_id%>">
 <table class="scoreboard">
 		<% player = @game.players.where(:team_id => team_id).first %>
 	<tr>
 		<th colspan="2">
-			Team <%= team_id == 0 ? "Red" : "Blue" %>
-			<% if @game.winning_player_id == player.id %>
-				- <b>WINNER!</b>
-			<% end %>
+			Team <%= team_id == 0 ? "Red" : "Blue" %>: <%= player.user.nickname %>
 		</th>
+	<% if @game.winning_player_id == player.id %>
+	<tr>
+		<th colspan="2">
+				<b>WINNER!</b>
+		</th>
+	</tr>
+	<% end %>
 	</tr>
 	<tr>
 		<td colspan="2">
@@ -47,6 +52,7 @@
 		</td>
 	</tr>
 </table>
+</div>
 	<% end %>
 
 
@@ -55,4 +61,3 @@
 <input type="hidden" id="current_team_id" value="<%= @game.current_team_id %>">
 <input type="hidden" id="current_player_id" value="<%= @game.current_player.nil? ? "" : @game.current_player.id %>">
 
-	<br class="clear">

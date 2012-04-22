@@ -1,46 +1,81 @@
+div.game-container {
+	padding-left: 10px;
+	div.scoreboard {
+		background-color: #66a;
+		border-color: #006;
+		border-style: solid;
+		border-width: 5px;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
 
-table.scoreboard {
-	float: left;
+		color: white;
 
-}
+		table.scoreboard {
+			width: 100%;
 
-div.game_sidepanel {
-	float: left;
-	width: 200px;
-}
+			th {
+				background-color: #006;
+				padding-bottom: 4px;
+			}
 
-div.game_tools {
-	
-}
-
-table.map-game {
-	/* See also: maps.css.scss */
-}
-
-div.unit_info, div.tile_type_info {
-	display: none;
-
-	background-color: #66a;
-	border-color: #006;
-	border-style: solid;
-	border-width: 5px;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-
-	color: white;
-
-	table.unit_info, table.tile_type_info {
-		width: 100%;
-
-		th {
-			background-color: #006;
-			padding-bottom: 4px;
+			td:nth-child(2) {
+				text-align: right;
+			}
 		}
+		margin-bottom: .5em;
 
-		td:nth-child(2) {
-			text-align: right;
+		&.team0 {
+			// Red Team
+			background-color: #833;
+			border-color: #500;
+			table.scoreboard {
+				th {
+					background-color: #500;
+				}
+			}
 		}
 	}
-	margin-bottom: .5em;
+
+	div.game_sidepanel {
+		float: left;
+		width: 200px;
+		margin-right: 10px;
+	}
+
+	div.game_tools {
+		
+	}
+
+	table.map-game {
+		/* See also: maps.css.scss */
+	}
+
+	div.unit_info, div.tile_type_info {
+		display: none;
+
+		background-color: #666;
+		border-color: #333;
+		border-style: solid;
+		border-width: 5px;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+
+		color: white;
+
+		table.unit_info, table.tile_type_info {
+			width: 100%;
+
+			th {
+				background-color: #333;
+				padding-bottom: 4px;
+			}
+
+			td:nth-child(2) {
+				text-align: right;
+			}
+		}
+		margin-bottom: .5em;
+	}
 }
