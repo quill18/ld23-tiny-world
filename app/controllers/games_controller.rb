@@ -2,7 +2,21 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+    if params[:user_id].blank?
+      if params[:show_completed] == "1"
+        @games = Game.all
+      else
+        @games = Game.where(:winning_player_id => nil)
+      end
+    else
+      if params[:show_completed] == 1
+        @games = User.find(params[:user_id]).games
+      else
+        @games = User.find(params[:user_id]).games.where(:winning_player_id => nil)
+      end
+    end
+
+    @users = User.order("nickname")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -101,7 +115,7 @@ class GamesController < ApplicationController
   def end_turn
     get_game
     @game.end_turn!
-    redirect_to :games
+    redirect_to @game
   end
 
   private

@@ -18,7 +18,7 @@
   		<td class="tile" data-x="<%=x%>" data-y="<%=y%>" data-tile_type_tag="<%=tile.tile_type.tag %>">
         <% game_unit = @game.get_game_unit_at(x,y) %>
         <% unless game_unit.nil? %>
-          <div class="unit" data-unit_id="<%=game_unit.id%>" data-unit_tag="<%=game_unit.unit.tag%>" data-team_id="<%=game_unit.team_id%>"></div>
+          <div class="unit" data-unit_id="<%=game_unit.id%>" data-unit_tag="<%=game_unit.unit.tag%>" data-team_id="<%=game_unit.team_id%>"><div class="healthbar" data-percentage="<%= 100*game_unit.current_hitpoints/game_unit.unit.hitpoints %>"></div></div>
         <% end %>
       </td>
   		<% x += 1 %>

@@ -1,8 +1,22 @@
 <h1>Listing games</h1>
 
+<%= form_tag games_path do %>
+  <label for="user_id">Show only games for:</label>
+  <%= select_tag( 
+    "user_id", 
+    options_from_collection_for_select(@users, 'id', 'nickname', params[:user_id]), 
+    :include_blank => true ) %>
+  <label>Show Completed Games?
+    <%= check_box_tag "show_completed", 1, params[:show_completed]=="1" %>
+  </label>
+  <%= submit_tag "Go" %>
+  <%= link_to "Reset", games_path, :method => "get" %>
+<% end %>
+
 <table>
   <tr>
     <th>Players</th>
+    <th>Status</th>
     <th></th>
     <th></th>
   </tr>
@@ -10,6 +24,7 @@
 <% @games.each do |game| %>
   <tr>
     <td><%= game.players.map {|p| p.user.nickname}.join(", ") %></td>
+    <td><%= game.winning_player_id.nil? ? "#{game.current_player.user.nickname}'s Turn" : "Complete" %></td>
     <td><%= link_to 'Play!', game %></td>
     <td><%= link_to 'Edit', edit_game_path(game) %></td>
   </tr>

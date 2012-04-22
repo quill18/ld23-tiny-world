@@ -24,6 +24,7 @@
 table.map {
 	border-collapse: collapse;
 	div.unit {
+		position: relative;
 		height: 32px;
 		width: 32px;
 		//border: 1px solid black;
@@ -35,6 +36,32 @@ table.map {
 		&.active {
 			background-color: green;
 		}
+
+		div.healthbar {
+			background-color: green;
+			height: 4px;
+			width: 100%;
+			position: absolute;
+			bottom: 0px;
+			/*font-size: 10px;
+			font-weight: bold;
+			overflow: hidden;*/
+
+
+			&.low {
+				background-color: yellow;
+			}
+
+			&.critical {
+				background-color: red;
+			}
+		}
+
+		/*&:hover {
+			div.healthbar {
+				overflow: visible;
+			}
+		}*/
 	}
 }
 
@@ -50,5 +77,6 @@ div.unit-button {
 	}
 
 	@include unit-sheet;
+
 
 }

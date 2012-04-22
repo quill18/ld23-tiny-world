@@ -8,4 +8,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :nickname
 
   validates :nickname, :length => {:minimum => 3, :maximum => 20}
+
+  has_many :players
+  has_many :games, :through => :players
 end

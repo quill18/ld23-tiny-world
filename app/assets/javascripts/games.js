@@ -3,7 +3,7 @@ $(function() {
 	var is_my_turn = $("#player_id").val() ==  $("#current_player_id").val();
 
 	$(".tool-button").on("click", function() {
-		if(waiting_on_ajax)
+		if(ajax_waiting())
 			return;
 
 		// This is just a generic cancel button right now
@@ -14,7 +14,7 @@ $(function() {
 	$(".tool-button").first().addClass("active");
 	
 	$(".unit-button").on("click", function() {
-		if(waiting_on_ajax)
+		if(ajax_waiting())
 			return;
 		// Entering unit-building mode
 		$("table.map-game div.unit").removeClass("active");
@@ -27,7 +27,7 @@ $(function() {
 	$("table.map-game").each(function() {
 		///////// Tile Clicked
 		$(this).find("td.tile").on("click", function() {
-			if(waiting_on_ajax)
+			if(ajax_waiting())
 				return;
 			var cell = $(this);
 
@@ -42,13 +42,29 @@ $(function() {
 	});
 
 	setupUnitClicking();
+	setupUnitHealthBars();
 });
+
+function setupUnitHealthBars() {
+	$("table.map-game div.unit div.healthbar").each(function () {
+		$(this).width($(this).data("percentage")+"%");
+		$(this).removeClass("low");
+		$(this).removeClass("critical");
+
+		if($(this).data("percentage") <= 60) {
+			$(this).addClass("low");
+		}
+		if($(this).data("percentage") <= 30) {
+			$(this).addClass("critical");
+		}
+	});
+}
 
 function setupUnitClicking() {
 	///////// Unit Clicked
 	$("table.map-game div.unit").off("click");
 	$("table.map-game div.unit").on("click", function(e) {
-		if(waiting_on_ajax)
+		if(ajax_waiting())
 			return;
 
 		if(isUnitBuildingMode())
@@ -117,12 +133,12 @@ function moveUnitTo(cell) {
 		y = fromY + 1;
 	}
 
-	waiting_on_ajax = true;
+	ajax_start();
 	var jqxhr = $.get(url, { fromX: fromX, fromY: fromY, toX: x, toY: y }, function(results) {
-		waiting_on_ajax = false;
+		ajax_stop();
 		processJSON(results);
 	}).error(function() {
-		waiting_on_ajax = false;
+		ajax_stop();
 		alert("Server fail!");
 	});
 
@@ -148,7 +164,9 @@ function processJSON(results) {
 			if(unit.length == 0) {
 				// We need to create the unit
 				unit = $('<div class="unit" data-unit_id="'+game_unit.id+'" data-unit_tag="'+game_unit.unit.tag+'" data-team_id="'+game_unit.team_id+'"></div>');
-
+				var percentage = 100*game_unit.current_hitpoints/game_unit.unit.hitpoints;
+				var healthbar = $('<div class="healthbar" data-percentage="'+percentage+'">');
+				healthbar.appendTo(unit);
 			}
 
 			if (game_unit.current_hitpoints > 0) {
@@ -187,6 +205,8 @@ function processJSON(results) {
 		alert(results.message);
 	}
 
+	setupUnitClicking();
+	setupUnitHealthBars();
 }
 
 function addUnit(cell) {
@@ -200,33 +220,15 @@ function addUnit(cell) {
 
 	var url = cell.closest("table.map-game").attr("data-add-unit-path") + ".json";
 
-	waiting_on_ajax = true;
+	ajax_start();
 	var jqxhr = $.get(url, { x: x, y: y, unit_tag: new_tag }, function(results) {
-		waiting_on_ajax = false;
+		ajax_stop();
 		// Success
 
 		processJSON(results);
 
-		/*console.log(results);
-
-		var game_units = results.game_units;
-
-		if( game_units != null ) {
-			for(i=0; i < game_units.length; i++) {
-				var game_unit = game_units[i];
-				var real_cell = $("td.tile[data-x="+game_unit.x+"][data-y="+game_unit.y+"]");
-				$('<div class="unit" data-unit_id="'+game_unit.id+'" data-unit_tag="'+game_unit.unit.tag+'" data-team_id="'+$("#current_player_id").val()+'"></div>').appendTo(real_cell);
-			}
-		}			
-
-		$("#team"+$("#current_team_id").val()+"_money").html(results.money);
-		setupUnitClicking();
-
-		if (results.message != null ) {
-			alert(results.message);
-		}*/
 	}).error(function() {
-		waiting_on_ajax = false;
+		ajax_stop();
 		alert("Server fail!");
 	});
 }

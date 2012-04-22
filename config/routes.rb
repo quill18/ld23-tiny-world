@@ -1,6 +1,10 @@
 TestApp::Application.routes.draw do
 
   resources :games do
+    collection do
+      post 'index'
+    end
+
     member do
       get 'add_unit'
       get 'move_unit'

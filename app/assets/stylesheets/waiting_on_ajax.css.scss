@@ -1,0 +1,14 @@
+div#ajax_waiting {
+	display: none;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0,0,0,0.5);
+	text-align: center;
+	padding-top: 100px;
+	font-size: 48px;
+	font-weight: bold;
+	color: white;
+}
