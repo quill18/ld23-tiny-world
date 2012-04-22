@@ -1,6 +1,6 @@
 <h1>Listing games</h1>
 
-<%= form_tag games_path do %>
+<%= form_tag by_user_games_path do %>
   <label for="user_id">Show only games for:</label>
   <%= select_tag( 
     "user_id", 

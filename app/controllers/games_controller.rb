@@ -19,9 +19,13 @@ class GamesController < ApplicationController
     @users = User.order("nickname")
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render :index }
       format.json { render json: @games }
     end
+  end
+
+  def by_user
+    index
   end
 
   # GET /games/1

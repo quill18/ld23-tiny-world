@@ -2,7 +2,7 @@ TestApp::Application.routes.draw do
 
   resources :games do
     collection do
-      post 'index'
+      post 'by_user'
     end
 
     member do
