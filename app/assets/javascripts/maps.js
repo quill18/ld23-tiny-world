@@ -31,11 +31,15 @@ $(function() {
 
 function setupMapVoting() {
 	$(".vote-button").on("click", function() {
+		if(ajax_waiting())
+			return;
+		ajax_start();
 		var vote = $(this).data("vote");
 		var parent = $(this).closest("div.map-voting");
 		var url = parent.data("ajax-url");
 		parent.load(url, { vote: vote }, function() {
 			setupMapVoting();
+			ajax_stop();
 		});
 	});
 

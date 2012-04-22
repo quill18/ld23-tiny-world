@@ -53,7 +53,7 @@ class Map < ActiveRecord::Base
   end
 
   def update_vote_total!
-    self.vote_total = map_votes.sum('vote')
+    self.vote_total = MapVote.where(:map_id => self.id).sum('vote')
     self.save!
   end
 end
