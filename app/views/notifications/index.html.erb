@@ -11,7 +11,7 @@
 <h1>Listing notifications</h1>
 
 <%= form_tag delete_notifications_path do %>
-<table class="table table-striped">
+<table class="notifications table table-striped">
   <tr>
     <th>Delete?</th>
     <th>Message</th>
@@ -19,9 +19,11 @@
   </tr>
 
 <% @notifications.each do |notification| %>
-  <tr class="<%= notification.viewed==false ? "unread" : "" %>">
+  <tr class="<%= notification.viewed==0 ? "unread" : "" %>">
     <td><%= check_box_tag "delete[]", notification.id, false, { :class=>"notification_delete" } %></td>
-    <td><%= simple_format(notification.message) %></td>
+    <td>
+      <%= simple_format((notification.viewed==0 ? "[NEW] " : "" ) + notification.message) %>
+    </td>
     <td>
       <% unless notification.game.nil? %>
         <%= link_to "Game vs #{n(notification.game.opponent_for_user(current_user).user)}", notification.game %>

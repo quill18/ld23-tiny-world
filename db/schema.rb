@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422200039) do
+ActiveRecord::Schema.define(:version => 20120422210039) do
 
   create_table "game_units", :force => true do |t|
     t.integer  "game_id"
@@ -71,9 +71,9 @@ ActiveRecord::Schema.define(:version => 20120422200039) do
     t.integer  "user_id"
     t.integer  "game_id"
     t.text     "message"
-    t.boolean  "viewed",     :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.integer  "viewed",     :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "notifications", ["game_id"], :name => "index_notifications_on_game_id"

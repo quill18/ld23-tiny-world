@@ -2,9 +2,9 @@ class NotificationsController < ApplicationController
   # GET /notifications
   # GET /notifications.json
   def index
-    @notifications = current_user.notifications
+    @notifications = current_user.notifications.dup
 
-    Notification.update_all("viewed=true", "user_id=#{current_user.id}")
+    Notification.update_all("viewed=1", "user_id=#{current_user.id}")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -88,9 +88,11 @@ class NotificationsController < ApplicationController
   end
 
   def delete
-    for id in params[:delete]
-      n = Notification.find_by_id_and_user_id(id, current_user.id)
-      n.destroy unless n.nil?
+    unless params[:delete].nil?
+      for id in params[:delete]
+        n = Notification.find_by_id_and_user_id(id, current_user.id)
+        n.destroy unless n.nil?
+      end
     end
 
     redirect_to notifications_path
