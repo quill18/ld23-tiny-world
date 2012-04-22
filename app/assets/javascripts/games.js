@@ -41,6 +41,19 @@ $(function() {
 
 	});
 
+	$("table.map-game td.tile").off("mouseenter");
+	$("table.map-game td.tile").on("mouseenter", function(e) {
+		$("div.tile_type_info").hide();
+		var tag = $(this).attr("data-tile_type_tag");
+		$("div.tile_type_info[data-tile_type_tag="+tag+"]").show();
+	});
+	
+	$("table.map-game td.tile").off("mouseleave");
+	$("table.map-game td.tile").on("mouseleave", function(e) {
+		$("div.tile_type_info").hide();
+	});
+
+
 	setupUnitClicking();
 	setupUnitHealthBars();
 });
@@ -95,6 +108,17 @@ function setupUnitClicking() {
 		return false;
 	});
 
+	$("table.map-game div.unit").off("mouseenter");
+	$("table.map-game div.unit").on("mouseenter", function(e) {
+		$("div.unit_info").hide();
+		var tag = $(this).attr("data-unit_tag");
+		$("div.unit_info[data-unit_tag="+tag+"]").show();
+	});
+
+	$("table.map-game div.unit").off("mouseleave");
+	$("table.map-game div.unit").on("mouseleave", function(e) {
+		$("div.unit_info").hide();
+	});
 }
 
 function isUnitBuildingMode() {

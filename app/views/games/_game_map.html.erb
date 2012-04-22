@@ -1,0 +1,27 @@
+  <table class="map map-game" data-add-unit-path="<%= add_unit_game_path(@game) %>" data-move-unit-path="<%= move_unit_game_path(@game) %>">
+  	<%
+  		x = 0
+  		y = 0
+  	%>
+  	<tr>
+  	<% for tile in @game.map.tiles %>
+  		<% if x >= @game.map.width 
+  			x = 0
+  			y += 1 %>
+  			</tr><tr>
+  		<% end %>
+  		<td class="tile" data-x="<%=x%>" data-y="<%=y%>" data-tile_type_tag="<%=tile.tile_type.tag %>" data-tile-variant="<%= rand(3) %>">
+        <% game_unit = @game.get_game_unit_at(x,y) %>
+        <% unless game_unit.nil? %>
+          <div class="unit" data-unit_id="<%=game_unit.id%>" data-unit_tag="<%=game_unit.unit.tag%>" data-team_id="<%=game_unit.team_id%>">
+            <div class="shield">
+              <span class="movement"><%= game_unit.movement_left %></span>
+            </div>
+            <div class="healthbar" data-percentage="<%= 100*game_unit.current_hitpoints/game_unit.unit.hitpoints %>"></div>
+          </div>
+        <% end %>
+      </td>
+  		<% x += 1 %>
+  	<% end %>
+  		</tr>
+  </table>

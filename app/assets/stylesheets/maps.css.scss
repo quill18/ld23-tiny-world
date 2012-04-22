@@ -29,7 +29,14 @@
 
 	&[data-tile_type_tag="neutral_castle"] {
 		background-position: -192px -32px;
-	}	
+	}
+
+	&[data-tile-variant="1"] {
+		background-position-y: -64px;
+	}
+	&[data-tile-variant="2"] {
+		background-position-y: -96px;
+	}
 }
 
 
@@ -44,6 +51,12 @@ table.map {
 
 		@include tile-sheet;
 	}
+}
+
+div.tile-buttons {
+	background-image: url("game-background.jpg");	
+	overflow: hidden;
+	float: left;
 }
 
 div.tile-button {

@@ -1,0 +1,46 @@
+
+table.scoreboard {
+	float: left;
+
+}
+
+div.game_sidepanel {
+	float: left;
+	width: 200px;
+}
+
+div.game_tools {
+	
+}
+
+table.map-game {
+	/* See also: maps.css.scss */
+}
+
+div.unit_info, div.tile_type_info {
+	display: none;
+
+	background-color: #66a;
+	border-color: #006;
+	border-style: solid;
+	border-width: 5px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+
+	color: white;
+
+	table.unit_info, table.tile_type_info {
+		width: 100%;
+
+		th {
+			background-color: #006;
+			padding-bottom: 4px;
+		}
+
+		td:nth-child(2) {
+			text-align: right;
+		}
+	}
+	margin-bottom: .5em;
+}

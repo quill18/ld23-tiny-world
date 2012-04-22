@@ -15,7 +15,7 @@
 		background-position: -64px 0px;
 	}
 
-	&[data-unit_tag="swordfish"] {
+	&[data-unit_tag="betta"] {
 		background-position: -96px 0px;
 	}
 }
@@ -68,6 +68,11 @@ table.map {
 				left: 4px;
 				font-size: 10px;
 				color: white;
+				-moz-user-select: -moz-none;
+				-khtml-user-select: none;
+				-webkit-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
 			}
 		}
 	}

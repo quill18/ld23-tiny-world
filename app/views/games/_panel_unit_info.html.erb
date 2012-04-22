@@ -1,0 +1,73 @@
+<%
+	tile_types = TileType.all
+%>
+<% for tile_type in tile_types %>
+<div class="tile_type_info" data-tile_type_tag="<%=tile_type.tag%>">
+	<table class="tile_type_info">
+
+		<tr>
+			<th colspan="2">
+				<%= tile_type.name %>
+			</th>
+		</tr>
+		<tr>
+			<td>Movement Cost</td>
+			<td><%= tile_type.movement_cost==0 ? "Blocked" : tile_type.movement_cost %></td>
+		</tr>
+		<tr>
+			<td>Special</td>
+			<td>
+				<% if tile_type.is_bubble_wall==1 %>
+					Bubbles!
+				<% elsif tile_type.tag =~ /castle/ %>
+					Gives Food!
+				<% else %>
+					Nothing
+				<% end %>
+			</td>
+		</tr>
+	</table>
+</div>
+<% end %>
+
+<%
+	units = Unit.all
+%>
+<% for unit in units %>
+<div class="unit_info" data-unit_tag="<%=unit.tag%>">
+	<table class="unit_info">
+
+		<tr>
+			<th colspan="2">
+				<%= unit.name %>
+			</th>
+		</tr>
+		<tr>
+			<td>Max HPs</td>
+			<td><%= unit.hitpoints %> <i class="icon-heart"></i>
+ </td>
+		</tr>
+		<tr>
+			<td>Attack</td>
+			<td><%= unit.damage %> <i class="icon-arrow-up"></td>
+		</tr>
+		<tr>
+			<td>Defense</td>
+			<td><%= unit.defense %> <i class="icon-arrow-down"></td>
+		</tr>
+		<tr>
+			<td>Speed</td>
+			<td><%= unit.speed %> <i class="icon-forward"></td>
+		</tr>
+		<tr>
+			<td>Cost</td>
+			<td><%= unit.cost %> <i class="icon-star"></td>
+		</tr>
+		<tr>
+			<td>Special</td>
+			<td><%= unit.is_bubble_walker==true ? "Likes Bubbles" : "Nothing"%></td>
+		</tr>
+	</table>
+</div>
+<% end %>
+

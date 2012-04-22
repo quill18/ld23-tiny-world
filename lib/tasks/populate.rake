@@ -60,8 +60,8 @@ namespace :populate do
 			)
 
 		Unit.create(
-				:name => "Swordfish",
-				:tag => "swordfish",
+				:name => "Betta",
+				:tag => "betta",
 				:is_bubble_walker => false,
 				:hitpoints => 10,
        			:damage  => 10,

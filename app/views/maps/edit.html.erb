@@ -22,9 +22,11 @@
     <%= f.text_area :description %>
   </div>
 
-  <% for tile_type in TileType.all %>
-    <div class="tile-button" data-tile_type_tag="<%=tile_type.tag %>"></div>
-  <% end %>
+  <div class="tile-buttons">
+    <% for tile_type in TileType.all %>
+      <div class="tile-button" data-tile_type_tag="<%=tile_type.tag %>"></div>
+    <% end %>
+  </div>
 
   <br class='clear'>
 

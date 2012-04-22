@@ -1,0 +1,11 @@
+<div class="game_tools">
+  <% if @player.team_id == @game.current_team_id %>
+  <div class="tool-button" data-tool_tag="pointer"></div>
+  <% for unit in Unit.all %>
+    <div class="unit-button" data-unit_tag="<%=unit.tag %>"></div>
+  <% end %>
+  <div class="actions">
+    <%= button_to "End Turn", end_turn_game_path(@game) %>
+  </div>
+  <% end %>
+</div>

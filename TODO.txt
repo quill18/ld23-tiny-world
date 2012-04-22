@@ -50,6 +50,7 @@ Sunday = Polish.
  - Email when turn is ready if it's been 1+ hours
  - Win rating
  - Random/Rated Matchmaking
+ - When displaying game map, non-optimized requests for units are made on each tile
 
  LOW PRIORITY
  - Game list filters should save to user profile (or at least the session)
@@ -72,6 +73,7 @@ Sunday = Polish.
  - Resource gathering?!?		-> Sand Dollars. Food Pellets. Algae. Pearls.
  - Test in Firefox/IE and on the Mac
  - Matchmaking improvements
+ - Tile variations during editing
 
 
 --------------------
