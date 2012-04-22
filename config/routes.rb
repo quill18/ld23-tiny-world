@@ -20,6 +20,9 @@ TestApp::Application.routes.draw do
     collection do
       get 'for_user'
     end
+    member do
+      post 'vote'
+    end
   end
 
   # The priority is based upon order of creation:

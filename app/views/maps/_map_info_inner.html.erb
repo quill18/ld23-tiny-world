@@ -1,0 +1,22 @@
+	<%
+		vote = 0
+		map_vote = MapVote.find_by_map_id_and_user_id(@map.id, current_user.id)
+		vote = map_vote.vote unless map_vote.nil?
+	%>
+
+	<table class="map-voting">
+		<tr>
+			<td>
+				<div class="tool-button vote-button" data-map_id="<%=@map.id%>" data-vote="1" data-tool_tag="<%= vote==1 ? "vote-up" : "vote-up-faded"%>"></div>
+			</td>
+			<td rowspan="2">
+				<h1><%= @map.name %> by <%= n(@map.user) %></h1>
+				<p><%= @map.description %></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="tool-button vote-button" data-map_id="<%=@map.id%>" data-vote="-1" data-tool_tag="<%= vote==-1 ? "vote-down" : "vote-down-faded"%>"></div>
+			</td>
+		</tr>
+	</table>

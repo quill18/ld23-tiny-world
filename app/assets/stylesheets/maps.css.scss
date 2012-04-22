@@ -73,3 +73,23 @@ div.tile-button {
 	@include tile-sheet;
 
 }
+
+div.map-voting {
+	background-color: white;
+	border-color: #666;
+	border-style: solid;
+	border-width: 5px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+
+	padding: 4px;
+
+	color: black;
+
+
+
+	table.map-voting {
+
+	}
+}

@@ -24,4 +24,19 @@ $(function() {
 			});
 		}
 	});
+
+	/* Map Voting */
+	setupMapVoting();
 });
+
+function setupMapVoting() {
+	$(".vote-button").on("click", function() {
+		var vote = $(this).data("vote");
+		var parent = $(this).closest("div.map-voting");
+		var url = parent.data("ajax-url");
+		parent.load(url, { vote: vote }, function() {
+			setupMapVoting();
+		});
+	});
+
+}

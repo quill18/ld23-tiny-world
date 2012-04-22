@@ -11,6 +11,11 @@ Map
 	width
 	starting_money
 
+MapVote
+	user_id
+	map_id
+	vote 	-1 or 1
+
 Tile
 	map_id
 	x

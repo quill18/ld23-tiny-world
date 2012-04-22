@@ -2,7 +2,7 @@ class MapsController < ApplicationController
   # GET /maps
   # GET /maps.json
   def index
-    @maps = Map.where(:real_map_id => nil)
+    @maps = Map.where(:real_map_id => nil).order("vote_total DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -90,6 +90,30 @@ class MapsController < ApplicationController
       format.html { redirect_to maps_url }
       format.json { head :no_content }
     end
+  end
+
+  def vote
+    @map = Map.find(params[:id])
+    vote = params[:vote].to_i
+    if vote > 0
+      vote = 1
+    elsif vote < 0
+      vote = -1
+    else
+      vote = 0
+    end
+
+    map_vote = MapVote.find_or_create_by_map_id_and_user_id(@map.id, current_user.id)
+    if map_vote.vote == vote
+      vote = 0
+    end
+
+    map_vote.vote = vote
+    map_vote.save!
+
+    @map.update_vote_total!
+
+    render :partial => "map_info_inner"
   end
 
   private

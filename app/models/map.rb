@@ -3,6 +3,8 @@ class Map < ActiveRecord::Base
   has_many :tiles
   accepts_nested_attributes_for :tiles
 
+  has_many :map_votes
+
   validates :height, :width, :numericality => {  
                               :only_integer => true, 
                               :greater_than => 4, 
@@ -48,5 +50,10 @@ class Map < ActiveRecord::Base
     else
       return Tile.where(:map_id => self.id, :x => x, :y => y).first
     end
+  end
+
+  def update_vote_total!
+    self.vote_total = map_votes.sum('vote')
+    self.save!
   end
 end

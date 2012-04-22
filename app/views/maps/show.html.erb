@@ -1,28 +1,6 @@
 
-<p>
-  <b>User:</b>
-  <%= @map.user %>
-</p>
+  <%= render :partial => "map_info" %>
 
-<p>
-  <b>Name:</b>
-  <%= @map.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @map.description %>
-</p>
-
-<p>
-  <b>Height:</b>
-  <%= @map.height %>
-</p>
-
-<p>
-  <b>Width:</b>
-  <%= @map.width %>
-</p>
 
   <table class="map">
     <%
@@ -36,11 +14,15 @@
         y += 1 %>
         </tr><tr>
       <% end %>
-      <td class="tile" data-x="<%=x%>" data-y="<%=y%>" data-tile_type_tag="<%=tile.tile_type.tag %>"></td>
+      <td class="tile" data-x="<%=x%>" data-y="<%=y%>" data-tile_type_tag="<%=tile.tile_type.tag %>" data-tile-variant="<%= rand(3) %>">
+      </td>
       <% x += 1 %>
     <% end %>
       </tr>
   </table>
+
+
+
 
 
 <%= link_to 'Edit', edit_map_path(@map) %> |

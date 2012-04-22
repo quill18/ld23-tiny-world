@@ -1,10 +1,10 @@
 <h1>Listing maps</h1>
 
-<table>
+<table class="table table-striped">
   <tr>
-    <th>Author</th>
+    <th>Score</th>
     <th>Name</th>
-    <th>Description</th>
+    <th>Author</th>
     <th>Height</th>
     <th>Width</th>
     <th></th>
@@ -15,16 +15,19 @@
 
 <% @maps.each do |map| %>
   <tr>
-    <td><%= map.user.nickname %></td>
+    <td><%= map.vote_total %></td>
     <td><%= map.name %></td>
-    <td><%= map.description %></td>
+    <td><%= map.user.nickname %></td>
     <td><%= map.height %></td>
     <td><%= map.width %></td>
-    <td><%= link_to 'View', map %></td>
-    <td><%= link_to 'Play a Game!', new_game_path(:map_id => map.id) %></td>
+    <td><%= link_to 'View', map, :class => "btn" %></td>
+    <td><%= link_to 'Play a Game!', new_game_path(:map_id => map.id), :class => "btn btn-success" %></td>
     <% if map.user == current_user %>
-    <td><%= link_to 'Edit', edit_map_path(map) %></td>
-    <td><%= link_to 'Destroy', map, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Edit', edit_map_path(map), :class => "btn" %></td>
+    <td><%= link_to 'Destroy', map, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %></td>
+    <% else %>
+    <td></td>
+    <td></td>
     <% end %>
   </tr>
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120421223255) do
+ActiveRecord::Schema.define(:version => 20120422183006) do
 
   create_table "game_units", :force => true do |t|
     t.integer  "game_id"
@@ -40,6 +40,17 @@ ActiveRecord::Schema.define(:version => 20120421223255) do
 
   add_index "games", ["map_id"], :name => "index_games_on_map_id"
 
+  create_table "map_votes", :force => true do |t|
+    t.integer  "map_id"
+    t.integer  "user_id"
+    t.integer  "vote"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "map_votes", ["map_id"], :name => "index_map_votes_on_map_id"
+  add_index "map_votes", ["user_id"], :name => "index_map_votes_on_user_id"
+
   create_table "maps", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -50,9 +61,11 @@ ActiveRecord::Schema.define(:version => 20120421223255) do
     t.datetime "updated_at",                     :null => false
     t.integer  "starting_money", :default => 50
     t.integer  "real_map_id"
+    t.integer  "vote_total",     :default => 0
   end
 
   add_index "maps", ["user_id"], :name => "index_maps_on_user_id"
+  add_index "maps", ["vote_total"], :name => "index_maps_on_vote_total"
 
   create_table "players", :force => true do |t|
     t.integer  "user_id"

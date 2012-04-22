@@ -8,12 +8,23 @@ body, html {
 	padding: 0px;
 }
 
+div.content {
+	margin: 4px;
+}
+
 a, a:visited, a:hover {
 	background-color: inherit;
 	text-decoration: underline;
 }
 a:hover {
 	color: #ccc;
+}
+
+a.btn-success, a.btn-success:visited {
+	color: white;
+}
+a.btn-danger, a.btn-danger:visited {
+	color: white;
 }
 
 

@@ -3,7 +3,7 @@ var is_my_turn = false;
 $(function() {
 	is_my_turn = $("#player_id").val() ==  $("#current_player_id").val();
 
-	$(".tool-button").on("click", function() {
+	$(".game_tools .tool-button").on("click", function() {
 		if(ajax_waiting())
 			return;
 
@@ -11,7 +11,7 @@ $(function() {
 		cancelModes();
 		$(this).addClass("active");	
 	});
-	$(".tool-button").first().addClass("active");
+	$(".game_tools .tool-button").first().addClass("active");
 	
 	$(".unit-button").on("click", function() {
 		if(ajax_waiting())
@@ -20,7 +20,7 @@ $(function() {
 		$("table.map-game div.unit").removeClass("active");
 
 		$(".unit-button").removeClass("active");
-		$(".tool-button").removeClass("active");
+		$(".game_tools .tool-button").removeClass("active");
 		$(this).addClass("active");
 	});
 	
@@ -99,8 +99,6 @@ function setupUnitClicking() {
 		e.preventDefault();
 
 		var unit = $(this);
-		console.log("Moving unit:");
-		console.log(unit);
 
 		$("table.map-game div.unit").removeClass("active");
 		unit.addClass("active");
@@ -149,11 +147,6 @@ function isUnitMovementMode() {
 
 function moveUnitTo(cell) {
 	var unit = $(".unit.active").first();
-	console.log("Unit for movement:")
-	console.log(unit);
-	console.log("Target cell:")
-	console.log(cell);
-
 	var url = cell.closest("table.map-game").attr("data-move-unit-path") + ".json";
 
 	var x = cell.data("x");
@@ -190,9 +183,6 @@ function moveUnitTo(cell) {
 
 function processJSON(results) {
 	// Success
-	console.log("AJAX RESULTS:");
-	console.log(results);
-
 	var game_units = results.game_units;
 
 	if( game_units != null ) {
@@ -231,16 +221,12 @@ function processJSON(results) {
 	}
 
 	if (results.kills != null ) {
-		console.log("KILLS:");
-		console.log(results.kills);
 		for(var key in results.kills) {
 			$("#"+key).html(results.kills[key]);
 		}
 	}
 
 	if (results.units != null ) {
-		console.log("UNITS:");
-		console.log(results.units);
 		for(var key in results.units) {
 			$("#"+key).html(results.units[key]);
 		}
