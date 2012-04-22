@@ -1,12 +1,14 @@
 <h1>Listing maps</h1>
 
+<div class="actions">
+    <%= link_to 'Create a Map', new_map_path, :class => "btn btn-success" %>
+</div>
+
 <table class="table table-striped">
   <tr>
     <th>Score</th>
     <th>Name</th>
     <th>Author</th>
-    <th>Height</th>
-    <th>Width</th>
     <th></th>
     <th></th>
     <th></th>
@@ -18,8 +20,6 @@
     <td><%= map.vote_total %></td>
     <td><%= map.name %></td>
     <td><%= map.user.nickname %></td>
-    <td><%= map.height %></td>
-    <td><%= map.width %></td>
     <td><%= link_to 'View', map, :class => "btn" %></td>
     <td><%= link_to 'Play a Game!', new_game_path(:map_id => map.id), :class => "btn btn-success" %></td>
     <% if map.user == current_user %>
@@ -35,4 +35,3 @@
 
 <br />
 
-<%= link_to 'New Map', new_map_path %>

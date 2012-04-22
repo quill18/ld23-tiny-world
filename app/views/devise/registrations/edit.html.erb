@@ -9,6 +9,9 @@
   <div><%= f.label :nickname %><br />
   <%= f.text_field :nickname %></div>
 
+  <div><%= f.label :notification_email_time, "Email my notifications when they are" %><br />
+  <%= f.select :notification_email_time, [ ["Never", 0], ["15 minutes old", 15], ["1 hour old", 60], ["1 day old", 1440] ] %></div>
+
   <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
 

@@ -46,12 +46,18 @@ table.map {
 	td.tile {
 		height: 32px;
 		width: 32px;
-		border: 1px solid black;
 		padding: 0px;
 
 		@include tile-sheet;
 	}
 }
+
+table.map-edit {
+	td.tile {
+		border: 1px solid black;
+	}
+}
+
 
 div.tile-buttons {
 	background-image: url("game-background.jpg");	

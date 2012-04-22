@@ -128,7 +128,7 @@ class Game < ActiveRecord::Base
 
 		min_damage = damage / 2
 
-		damage = min_damage + rand(damage)
+		damage = min_damage + rand(damage) + 1
 
 		damage -=  - other_game_unit.unit.defense
 

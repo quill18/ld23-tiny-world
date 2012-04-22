@@ -1,8 +1,11 @@
 <h1>Listing games</h1>
 
+<div class="actions">
 <% unless params[:id].blank? %>
   <%= link_to "Show Everyone's Games!", games_path, :class => "btn" %>
 <% end %>
+  <%= link_to 'Start a New Game', new_game_path, :class => "btn btn-success" %>
+</div>
 
 <table class="game-list table table-striped">
   <tr>
@@ -30,4 +33,3 @@
 
 <br />
 
-<%= link_to 'New Game', new_game_path %>
