@@ -211,7 +211,7 @@ class Game < ActiveRecord::Base
 
 		# Check for a winner
 		for player in self.players
-			if castles_for_player(player).length == 0 or game_units_for_player(player).length == 0
+			if castles_for_player(player).length == 0# or game_units_for_player(player).length == 0
 				winning_player = self.players.where('team_id <> ?',player.team_id).first
 				self.winning_player_id = winning_player.id
 				self.current_team_id = -winning_player.team_id

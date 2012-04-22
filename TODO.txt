@@ -30,6 +30,7 @@ Saturday = Complete game features.
 	x Base is destroyed
  - Email when challenged? (Maybe just when a turn is ready.)
  - Email when turn is ready
+ - Filter MY games
 
 
 Sunday = Polish.
