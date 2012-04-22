@@ -31,9 +31,9 @@ namespace :populate do
        			:damage  => 5,
 		        :defense => 0,
 		        :range   => 1,
-		        :speed   => 2
-
-			)
+		        :speed   => 2,
+		        :cost    => 10
+				)
 
 		Unit.create(
 				:name => "Seahorse",
@@ -43,8 +43,8 @@ namespace :populate do
        			:damage  => 5,
 		        :defense => 0,
 		        :range   => 1,
-		        :speed   => 4
-
+		        :speed   => 4,
+		        :cost    => 10
 			)
 
 		Unit.create(
@@ -55,8 +55,8 @@ namespace :populate do
        			:damage  => 5,
 		        :defense => 2,
 		        :range   => 1,
-		        :speed   => 1
-
+		        :speed   => 1,
+		        :cost    => 10
 			)
 
 		Unit.create(
@@ -67,8 +67,8 @@ namespace :populate do
        			:damage  => 10,
 		        :defense => 0,
 		        :range   => 1,
-		        :speed   => 2
-
+		        :speed   => 2,
+		        :cost    => 10
 			)
 
 
