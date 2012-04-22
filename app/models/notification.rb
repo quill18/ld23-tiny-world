@@ -5,6 +5,6 @@ class Notification < ActiveRecord::Base
 	default_scope :order => "created_at DESC"
 
 	def self.unread
-		Notification.where(:viewed => false)
+		Notification.where(:viewed => 0)
 	end
 end
