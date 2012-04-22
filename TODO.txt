@@ -30,11 +30,15 @@ Saturday = Complete game features.
 	x Base is destroyed
  - Email when challenged? (Maybe just when a turn is ready.)
  - Email when turn is ready
+ - Notifications
  - Filter MY games
-
+ - Filter completed games
+ - Vote up maps ***
+ - Win rating
+ - Surrender Button
+ - Random/Rated Matchmaking
 
 Sunday = Polish.
- - Vote up maps
  - COLOR CODE SPRITES!
  - Fill in missing sprites
  - Elo rankings
