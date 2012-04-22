@@ -22,16 +22,9 @@
   </tr>
 
 <% @games.each do |game| %>
-  <%
-    begin
-      nickname = game.current_player.user.nickname
-    rescue
-      nickname = "Anonymous"
-    end
-  %>
   <tr>
-    <td><%= game.players.map {|p| p.user.nickname}.join(", ") %></td>
-    <td><%= game.winning_player_id.nil? ? "#{nickname}'s Turn" : "Complete" %></td>
+    <td><%= game.players.map {|p| n(p.user)}.join(", ") %></td>
+    <td><%= game.winning_player_id.nil? ? "#{n(game.current_player.user)}'s Turn" : "Complete" %></td>
     <td><%= link_to 'Play!', game %></td>
     <td><%= link_to 'Edit', edit_game_path(game) %></td>
   </tr>
