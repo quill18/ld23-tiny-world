@@ -32,14 +32,14 @@ namespace :populate do
 		        :defense => 0,
 		        :range   => 1,
 		        :speed   => 2,
-		        :cost    => 10
+		        :cost    => 6
 				)
 
 		Unit.create(
 				:name => "Seahorse",
 				:tag => "seahorse",
 				:is_bubble_walker => false,
-				:hitpoints => 10,
+				:hitpoints => 8,
        			:damage  => 5,
 		        :defense => 0,
 		        :range   => 1,
@@ -52,11 +52,11 @@ namespace :populate do
 				:tag => "turtle",
 				:is_bubble_walker => true,
 				:hitpoints => 10,
-       			:damage  => 5,
+       			:damage  => 6,
 		        :defense => 2,
 		        :range   => 1,
 		        :speed   => 1,
-		        :cost    => 10
+		        :cost    => 12
 			)
 
 		Unit.create(

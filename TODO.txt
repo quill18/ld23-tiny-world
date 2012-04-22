@@ -5,7 +5,7 @@ Friday = The skeleton
  x Map editor
  x Data structures
  x Implement a unit
- - Default map size?
+ x Default map size?
 
 
 Saturday = Complete game features.
@@ -44,11 +44,15 @@ Sunday = Polish.
  - Unit health not refreshing? ********************************
 
  HIGH PRIORITY
- - Notifications
+ x Notifications
  x Vote up maps ***
  - RE-BALANCE!!!
  - Defending units hit back
- - Surrender button
+ x Surrender button
+ - Email notifications
+ - Customize email notification times and/or disable
+ - AJAX notification updater
+
 
  MEDIUM PRIORITY
  - Email when turn is ready if it's been 1+ hours

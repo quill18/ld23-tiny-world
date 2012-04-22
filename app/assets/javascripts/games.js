@@ -208,8 +208,10 @@ function processJSON(results) {
 				shield.appendTo(unit);
 			}
 
+			console.log(game_unit);
 			var percentage = 100*game_unit.current_hitpoints/game_unit.unit.hitpoints;
 			unit.find(".healthbar").attr("data-percentage", percentage);
+			unit.find(".healthbar").data("percentage", percentage);
 
 			unit.find(".movement").html(game_unit.movement_left);
 
