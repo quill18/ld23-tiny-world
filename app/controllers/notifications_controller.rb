@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
   def index
     @notifications = current_user.notifications
 
-    Notification.update_all("viewed=1", "user_id=#{current_user.id}")
+    Notification.update_all("viewed=true", "user_id=#{current_user.id}")
 
     respond_to do |format|
       format.html # index.html.erb
