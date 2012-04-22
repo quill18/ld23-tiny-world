@@ -98,4 +98,8 @@ class NotificationsController < ApplicationController
     redirect_to notifications_path
   end
 
+  def reload
+    render :partial => "layouts/notifications"
+  end
+
 end

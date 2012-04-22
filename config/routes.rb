@@ -4,6 +4,9 @@ TestApp::Application.routes.draw do
     collection do
       post 'delete'
     end
+    collection do
+      get 'reload'
+    end
   end
 
   resources :games do

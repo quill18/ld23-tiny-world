@@ -8,5 +8,9 @@ $(function() {
 		}
 	});
 
-	
+	setInterval( function() { checkNotifications(); }, 30000 );
 });
+
+function checkNotifications() {
+	$("#toolbar_notifications").load( $("#toolbar_notifications").data("ajax-url") );
+}
