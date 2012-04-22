@@ -31,7 +31,7 @@
   %>
   <tr>
     <td><%= game.players.map {|p| p.user.nickname}.join(", ") %></td>
-    <td><%= game.winning_player_id.nil? ? "#{game.current_player.user.nickname}'s Turn" : "Complete" %></td>
+    <td><%= game.winning_player_id.nil? ? "#{nickname}'s Turn" : "Complete" %></td>
     <td><%= link_to 'Play!', game %></td>
     <td><%= link_to 'Edit', edit_game_path(game) %></td>
   </tr>
