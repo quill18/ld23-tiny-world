@@ -8,8 +8,6 @@ class Game < ActiveRecord::Base
 
 	has_many :game_units, :dependent => :destroy
 
-	belongs_to :current_player, :class_name => "Player"
-
 	def clone_map
 		cloned_map = self.map.dup
 		cloned_map.real_map_id = self.map.id
