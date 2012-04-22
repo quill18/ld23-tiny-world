@@ -232,11 +232,9 @@ class Game < ActiveRecord::Base
 		# Check for a winner
 		update_winning_player_id
 
-		unless self.winning_player_id.nil?
-			
+		if self.winning_player_id.nil?
+			start_new_turn!()		
 		end
-
-		start_new_turn!()
 
 		self.save!
 	end
