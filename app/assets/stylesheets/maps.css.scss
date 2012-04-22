@@ -4,36 +4,37 @@
 	background-image: url("tile_sheet.png");
 
 	&[data-tile_type_tag="open-water"] {
-		background-position: 0px 0px;
+		background-position: 0px -32px;
 	}
 
 	&[data-tile_type_tag="bubbles"] {
-		background-position: -32px 0px;
+		background-position: -32px -32px;
 	}
 
 	&[data-tile_type_tag="weeds"] {
-		background-position: -64px 0px;
+		background-position: -64px -32px;
 	}
 
 	&[data-tile_type_tag="logs"] {
-		background-position: -96px 0px;
+		background-position: -96px -32px;
 	}
 
 	&[data-tile_type_tag="castle0"] {
-		background-position: -128px 0px;
+		background-position: -128px -32px;
 	}
 
 	&[data-tile_type_tag="castle1"] {
-		background-position: -160px 0px;
+		background-position: -160px -32px;
 	}
 
 	&[data-tile_type_tag="neutral_castle"] {
-		background-position: -192px 0px;
+		background-position: -192px -32px;
 	}	
 }
 
 
 table.map {
+	background-image: url("game-background.jpg");
 	border-collapse: collapse;
 	td.tile {
 		height: 32px;

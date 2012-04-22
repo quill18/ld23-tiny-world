@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Tanks for all the fish? No. Just MY fish.</title>
+  <title>Fish Tank Commander</title>
   <link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
 
   <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -23,11 +23,13 @@
 		<% end %>
 		<ul>
 			<% if user_signed_in? %>
-			<li><%= link_to "Account Settings", edit_user_registration_path(current_user) %></li>
 			<li><%= link_to "Logout", destroy_user_session_path(current_user), :method => :delete %></li>
+			<li><%= link_to "Account Settings", edit_user_registration_path(current_user) %></li>
 			<% else %>
 			<li><%= link_to "Log in!", new_user_session_path %></li>
 			<% end %>
+			<li><%= link_to "View/Create Maps", maps_path %>
+			<li><%= link_to "Play a Game!", games_path %>
 		</ul>
 	</nav>
 </header>
