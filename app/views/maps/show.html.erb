@@ -25,6 +25,24 @@
   <%= @map.width %>
 </p>
 
+  <table class="map">
+    <%
+      x = 0
+      y = 0
+    %>
+    <tr>
+    <% for tile in @map.tiles %>
+      <% if x >= @map.width 
+        x = 0
+        y += 1 %>
+        </tr><tr>
+      <% end %>
+      <td class="tile" data-x="<%=x%>" data-y="<%=y%>" data-tile_type_tag="<%=tile.tile_type.tag %>"></td>
+      <% x += 1 %>
+    <% end %>
+      </tr>
+  </table>
+
 
 <%= link_to 'Edit', edit_map_path(@map) %> |
 <%= link_to 'Back', maps_path %>

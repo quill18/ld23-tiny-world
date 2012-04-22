@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :nickname
 
-  validates :nickname, :length => {:minimum => 3, :maximum => 20}
+  validates :nickname, :length => {:minimum => 3, :maximum => 20}, :uniqueness => true
 
   has_many :players
   has_many :games, :through => :players

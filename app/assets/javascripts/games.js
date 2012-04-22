@@ -1,6 +1,7 @@
+var is_my_turn = false;
 
 $(function() {
-	var is_my_turn = $("#player_id").val() ==  $("#current_player_id").val();
+	is_my_turn = $("#player_id").val() ==  $("#current_player_id").val();
 
 	$(".tool-button").on("click", function() {
 		if(ajax_waiting())
@@ -68,11 +69,13 @@ function setupUnitClicking() {
 	///////// Unit Clicked
 	$("table.map-game div.unit").off("click");
 	$("table.map-game div.unit").on("click", function(e) {
-		if(ajax_waiting())
+		if(ajax_waiting() || is_my_turn==false)
 			return;
 
+
 		if(isUnitBuildingMode()) {
-			cancelModes();
+			//cancelModes();
+			return;
 		}
 
 		if($(this).data("team_id") != parseInt($("#current_team_id").val()))

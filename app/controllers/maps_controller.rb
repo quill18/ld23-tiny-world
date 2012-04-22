@@ -22,7 +22,7 @@ class MapsController < ApplicationController
   # GET /maps/1
   # GET /maps/1.json
   def show
-    @map = Map.find(params[:id])
+    @map = Map.find(params[:id], :include => "tiles")
 
     respond_to do |format|
       format.html # show.html.erb

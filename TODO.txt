@@ -31,25 +31,26 @@ Saturday = Complete game features.
  - Email when challenged? (Maybe just when a turn is ready.)
  - Email when turn is ready
  - Notifications
- * Filter MY games
- - Filter completed games
+ x Filter MY games
+ x Filter completed games
  - Vote up maps ***
  - Win rating
  - Surrender Button
  - Random/Rated Matchmaking
  - AJAX loader indicator
  - Unit health and stats on TOOLTIP
- * Health bars
+ x Health bars
  - Logging window window?
+ - Your game screen needs to show you your colour
 
 Sunday = Polish.
- - COLOR CODE SPRITES!
+ x COLOR CODE SPRITES!
  - Fill in missing sprites
  - Elo rankings
  - Sound
  - Music
- - Deployment tests
- - Max size on maps
+ x Deployment tests
+ x Max size on maps
  - critical hits, glancing blows
  - Neutral castles have neutral enemies
  - Defending units hit back
