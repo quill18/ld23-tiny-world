@@ -124,7 +124,13 @@ class Game < ActiveRecord::Base
 
 	def fight_unit!(game_unit, other_game_unit)
 
-		damage = game_unit.unit.damage - other_game_unit.unit.defense
+		damage = game_unit.unit.damage
+
+		min_damage = damage / 2
+
+		damage = min_damage + rand(damage)
+
+		damage -=  - other_game_unit.unit.defense
 
 		other_game_unit.current_hitpoints -= damage
 		if other_game_unit.current_hitpoints <= 0

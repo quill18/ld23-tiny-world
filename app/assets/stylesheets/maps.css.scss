@@ -46,7 +46,7 @@ table.map {
 	td.tile {
 		height: 32px;
 		width: 32px;
-		//border: 1px solid black;
+		border: 1px solid black;
 		padding: 0px;
 
 		@include tile-sheet;
