@@ -41,6 +41,7 @@ Sunday = Polish.
  ULTRA PRIORITY
  x Styling
  x Sprite redo
+ - Unit health not refreshing? ********************************
 
  HIGH PRIORITY
  - Notifications

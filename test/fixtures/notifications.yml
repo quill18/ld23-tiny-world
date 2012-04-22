@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  game_id: 1
+  message: MyText
+  viewed: false
+
+two:
+  user_id: 1
+  game_id: 1
+  message: MyText
+  viewed: false

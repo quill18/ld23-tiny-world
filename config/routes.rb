@@ -1,5 +1,11 @@
 TestApp::Application.routes.draw do
 
+  resources :notifications do
+    collection do
+      post 'delete'
+    end
+  end
+
   resources :games do
     collection do
       post 'by_user'

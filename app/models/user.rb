@@ -15,4 +15,6 @@ class User < ActiveRecord::Base
   has_many :map_votes
 
   has_many :maps, :dependent => :destroy
+
+  has_many :notifications, :dependent => :destroy
 end

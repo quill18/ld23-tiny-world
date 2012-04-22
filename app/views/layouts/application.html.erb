@@ -27,6 +27,13 @@
 			<li><%= link_to "Account Settings", edit_user_registration_path(current_user) %></li>
 			<li><%= link_to "View/Create Maps", maps_path %>
 			<li><%= link_to "Play a Game!", user_game_path(current_user.id) %>
+			<li><a href="<%= url_for notifications_path %>">
+				<% if current_user.notifications.unread.length > 0 %>
+					<i class="icon-envelope icon-white"></i> (current_user.notifications.unread.length)
+				<% else %>
+					<i class="icon-envelope"></i>
+				<% end %>
+			</a>
 			<% else %>
 			<li><%= link_to "Log in!", new_user_session_path %></li>
 			<li><%= link_to "View/Create Maps", maps_path %>

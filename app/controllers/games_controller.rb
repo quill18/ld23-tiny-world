@@ -127,7 +127,7 @@ class GamesController < ApplicationController
   def surrender
     get_game
     @game.user_surrender!(current_user)
-    redirect_to @game
+    redirect_to games_url
   end
 
   private

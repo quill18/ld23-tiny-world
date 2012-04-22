@@ -1,0 +1,42 @@
+
+<% if @notifications.length == 0 %>
+  <h2>No notifications!</h2>
+  <p>
+    You need to make more friends.
+  </p>
+  <p>
+    Or enemies.
+  </p>
+<% else %>
+<h1>Listing notifications</h1>
+
+<%= form_tag delete_notifications_path do %>
+<table class="table table-striped">
+  <tr>
+    <th>Delete?</th>
+    <th>Message</th>
+    <th>Game</th>
+  </tr>
+
+<% @notifications.each do |notification| %>
+  <tr class="<%= notification.viewed==false ? "unread" : "" %>">
+    <td><%= check_box_tag "delete[]", notification.id, false, { :class=>"notification_delete" } %></td>
+    <td><%= simple_format(notification.message) %></td>
+    <td>
+      <% unless notification.game.nil? %>
+        <%= link_to "Game vs #{n(notification.game.opponent_for_user(current_user).user)}", notification.game %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+  <tr>
+    <td><%= check_box_tag "check_all" %></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+<div class="actions">
+  <%= submit_tag "Delete Checked" %>
+</div>
+  <% end %>
+<% end %>

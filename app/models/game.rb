@@ -8,6 +8,8 @@ class Game < ActiveRecord::Base
 
 	has_many :game_units, :dependent => :destroy
 
+	has_many :notifications, :dependent => :destroy
+
 	def clone_map
 		cloned_map = self.map.dup
 		cloned_map.real_map_id = self.map.id
@@ -33,6 +35,18 @@ class Game < ActiveRecord::Base
 
 	def current_player
 		return player_from_team_id(self.current_team_id)
+	end
+
+	def current_user
+		return current_player.user
+	end
+
+	def winning_player
+		return Player.find(self.winning_player_id)
+	end
+
+	def winning_user
+		return winning_player.user
 	end
 
 	def add_unit!(x, y, unit_tag, player)
@@ -226,7 +240,13 @@ class Game < ActiveRecord::Base
 			if castles_for_player(player).length == 0# or game_units_for_player(player).length == 0
 				winning_player = self.players.where('team_id <> ?',player.team_id).first
 				set_winning_player(winning_player)
-				break
+
+				notification = Notification.create(
+						:game_id => self.id,
+						:user_id => player.user.id,
+						:message => "You were defeated!"
+					)
+				return
 			end
 		end
 	end
@@ -241,11 +261,23 @@ class Game < ActiveRecord::Base
 	end
 
 	def player_surrender!(player)
+		set_winning_player( opponent_for_player(player) )
+		self.save!
+		notification = Notification.create(
+				:game_id => self.id,
+				:user_id => winning_user.id,
+				:message => "Your opponent surrendered!"
+			)
+	end
+
+	def opponent_for_user(user)
+		return opponent_for_player(player_from_user(user))
+	end
+
+	def opponent_for_player(player)
 		for p in self.players
 			if player != p
-				set_winning_player(p)
-				self.save!
-				return
+				return p
 			end
 		end		
 	end
@@ -267,7 +299,13 @@ class Game < ActiveRecord::Base
 			game_unit.save!
 		end
 
-
+		unless self.id.nil?
+			notification = Notification.create(
+					:game_id => self.id,
+					:user_id => current_user.id,
+					:message => "It's your turn!"
+				)
+		end
 	end
 
 
