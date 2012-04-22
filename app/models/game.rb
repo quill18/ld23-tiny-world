@@ -212,14 +212,7 @@ class Game < ActiveRecord::Base
 		end
 
 		# Check for a winner
-		for player in self.players
-			if castles_for_player(player).length == 0# or game_units_for_player(player).length == 0
-				winning_player = self.players.where('team_id <> ?',player.team_id).first
-				self.winning_player_id = winning_player.id
-				self.current_team_id = -winning_player.team_id
-				break
-			end
-		end
+		update_winning_player_id
 
 		unless self.winning_player_id.nil?
 			
@@ -228,6 +221,35 @@ class Game < ActiveRecord::Base
 		start_new_turn!()
 
 		self.save!
+	end
+
+	def update_winning_player_id
+		for player in self.players
+			if castles_for_player(player).length == 0# or game_units_for_player(player).length == 0
+				winning_player = self.players.where('team_id <> ?',player.team_id).first
+				set_winning_player(winning_player)
+				break
+			end
+		end
+	end
+
+	def set_winning_player(winning_player)
+		self.winning_player_id = winning_player.id
+		self.current_team_id = -winning_player.team_id
+	end
+
+	def user_surrender!(user)
+		player_surrender!(player_from_user(user))
+	end
+
+	def player_surrender!(player)
+		for p in self.players
+			if player != p
+				set_winning_player(p)
+				self.save!
+				return
+			end
+		end		
 	end
 
 	def start_new_turn!

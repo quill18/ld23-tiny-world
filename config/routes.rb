@@ -10,6 +10,7 @@ TestApp::Application.routes.draw do
       get 'add_unit'
       get 'move_unit'
       post 'end_turn'
+      post 'surrender'
     end
   end
 

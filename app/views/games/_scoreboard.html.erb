@@ -60,4 +60,7 @@
 <input type="hidden" id="player_id" value="<%= @player.id %>">
 <input type="hidden" id="current_team_id" value="<%= @game.current_team_id %>">
 <input type="hidden" id="current_player_id" value="<%= @game.current_player.nil? ? "" : @game.current_player.id %>">
+<% unless @game.winning_player_id.nil? %>
+<input type="hidden" id="winning_player_id" value="<%= @game.winning_player_id %>">
+<% end %>
 

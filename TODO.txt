@@ -45,6 +45,9 @@ Sunday = Polish.
  HIGH PRIORITY
  - Notifications
  x Vote up maps ***
+ - RE-BALANCE!!!
+ - Defending units hit back
+ - Surrender button
 
  MEDIUM PRIORITY
  - Email when turn is ready if it's been 1+ hours
@@ -69,7 +72,6 @@ Sunday = Polish.
  - Music
  - critical hits, glancing blows
  - Neutral castles have neutral enemies
- - Defending units hit back
  - Terrain (weeds) bonus to defense
  - Maintenance cost for units?
  - Highlight legal tiles for unit placement and movement
@@ -79,6 +81,8 @@ Sunday = Polish.
  - Test in Firefox/IE and on the Mac
  - Matchmaking improvements
  - Tile variations during editing
+ - Better handling of maps when a user deletes his account
+ - Validate at least one castle of each colour on before_save for map
 
 
 --------------------

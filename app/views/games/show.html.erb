@@ -7,8 +7,10 @@
 
 <div class="game-container">
 	<%= render :partial => "game_sidepanel" %>
-	<%= render :partial => "game_tools" %>
 	<%= render :partial => "game_map" %>
+	<% if @game.winning_player_id.nil? %>
+		<%= render :partial => "game_tools" %>
+	<% end %>
 </div>
 
 <br class="clear">

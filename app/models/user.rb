@@ -13,4 +13,6 @@ class User < ActiveRecord::Base
   has_many :games, :through => :players, :order => "winning_player_id"
 
   has_many :map_votes
+
+  has_many :maps, :dependent => :destroy
 end

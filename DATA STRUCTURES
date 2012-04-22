@@ -3,6 +3,11 @@ DATA STRUCTURES
 User
 	nickname
 
+Notification
+	user_id
+	game_id
+	message
+
 Map
 	user_id => creator
 	name

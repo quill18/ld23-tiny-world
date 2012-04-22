@@ -1,6 +1,9 @@
 var is_my_turn = false;
 
 $(function() {
+	if($("#winning_player_id").length > 0)
+		return;
+
 	is_my_turn = $("#player_id").val() ==  $("#current_player_id").val();
 
 	$(".game_tools .tool-button").on("click", function() {

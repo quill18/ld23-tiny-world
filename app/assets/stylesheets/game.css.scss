@@ -44,11 +44,17 @@ div.game-container {
 	}
 
 	div.game_tools {
-		
+		float: left;
 	}
 
 	table.map-game {
 		/* See also: maps.css.scss */
+		float: left;
+	}
+
+	div.panel_unit_info {
+		float: left;
+		width: 200px;
 	}
 
 	div.unit_info, div.tile_type_info {

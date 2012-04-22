@@ -124,6 +124,12 @@ class GamesController < ApplicationController
     redirect_to @game
   end
 
+  def surrender
+    get_game
+    @game.user_surrender!(current_user)
+    redirect_to @game
+  end
+
   private
   def get_game
     @game = Game.find(params[:id], :include => [{:map => :tiles}])
