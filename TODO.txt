@@ -28,29 +28,39 @@ Saturday = Complete game features.
  x Lose condition
 	x All units dead
 	x Base is destroyed
- - Email when challenged? (Maybe just when a turn is ready.)
- - Email when turn is ready
- - Notifications
  x Filter MY games
  x Filter completed games
- - Vote up maps ***
- - Win rating
- - Surrender Button
- - Random/Rated Matchmaking
- - AJAX loader indicator
- - Unit health and stats on TOOLTIP
  x Health bars
- - Logging window window?
- - Your game screen needs to show you your colour
 
 Sunday = Polish.
  x COLOR CODE SPRITES!
+ x Deployment tests
+ x Max size on maps
+ x AJAX loader indicator
+
+ ULTRA PRIORITY
+ - Styling
+ - Sprite redo
+
+ HIGH PRIORITY
+ - Notifications
+ - Vote up maps ***
+
+ MEDIUM PRIORITY
+ - Email when turn is ready if it's been 1+ hours
+ - Win rating
+ - Random/Rated Matchmaking
+
+ LOW PRIORITY
+ - Game list filters should save to user profile (or at least the session)
+ - Surrender Button
+ - Unit health and stats on TOOLTIP
+ - Logging window?
+ - Your game screen needs to show you your colour
  - Fill in missing sprites
  - Elo rankings
  - Sound
  - Music
- x Deployment tests
- x Max size on maps
  - critical hits, glancing blows
  - Neutral castles have neutral enemies
  - Defending units hit back

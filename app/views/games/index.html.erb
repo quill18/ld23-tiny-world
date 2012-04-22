@@ -13,11 +13,11 @@
   <%= link_to "Reset", games_path, :method => "get" %>
 <% end %>
 
-<table>
+<table class="game-list table table-striped">
   <tr>
     <th>Players</th>
+    <th>Map</th>
     <th>Status</th>
-    <th></th>
     <th></th>
   </tr>
 
@@ -25,9 +25,9 @@
 <% begin %>
   <tr>
     <td><%= game.players.map {|p| n(p.user)}.join(", ") %></td>
-    <td><%= game.winning_player_id.nil? ? "#{n(game.current_player.user)}'s Turn" : "Complete" %></td>
-    <td><%= link_to 'Play!', game %></td>
-    <td><%= link_to 'Edit', edit_game_path(game) %></td>
+    <td><%= game.map.name %></td>
+    <td class="<%= game.current_player.user==current_user ? "your-turn" : ""%>"><%= game.winning_player_id.nil? ? "#{n(game.current_player.user)}'s Turn" : "Complete" %></td>
+    <td><%= link_to 'Play!', game, :class => "btn" %></td>
   </tr>
 <% rescue %>
   BAD GAME: <%= game.inspect %>

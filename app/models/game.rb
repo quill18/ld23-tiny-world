@@ -100,6 +100,8 @@ class Game < ActiveRecord::Base
 		return {:message => "Pathfinding failed."} if path.nil?
 		
 		game_unit.movement_left -= toTile.tile_type.movement_cost
+		game_unit.movement_left = 0 if game_unit.movement_left < 0
+		
 		game_unit.x = path.last.x
 		game_unit.y = path.last.y
 

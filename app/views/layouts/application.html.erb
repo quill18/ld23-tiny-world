@@ -2,25 +2,44 @@
 <html>
 <head>
   <title>Tanks for all the fish? No. Just MY fish.</title>
+  <link href='http://fonts.googleapis.com/css?family=Bitter:400,700' rel='stylesheet' type='text/css'>
+
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%=controller_name%> <%=action_name%>">
 
-<h1>Tanks for all the fish? No. Just MY fish!</h1>
+<header>
+	<h1><%= link_to "FISH TANK COMMANDER", root_path %></h1>
+	<h2><%= link_to "Big Combat in a Tiny Aquarium."%></h2>
 
-	<p><%= flash[:notice] %></p>
-	<p><%= flash[:alert] %></p>
 
-<% if user_signed_in? %>
-	<p>Hello <%= current_user.nickname %> 
-		<%= link_to "[Account Settions]", edit_user_registration_path(current_user) %>
-		<%= link_to "[Logout]", destroy_user_session_path(current_user), :method => :delete %>
-	</p>
-<% else %>
-	<%= link_to "Log in!", new_user_session_path %>
-<% end %>
+	<nav>
+		<% if user_signed_in? %>
+			<h3>Hi <%=current_user.nickname%>, you're my favorite <%= render :partial => "layouts/fish_name" %>!</h3>
+		<% else %>
+			<h3>Sign up for hours and hours of recognition in this spot!</h3>
+		<% end %>
+		<ul>
+			<% if user_signed_in? %>
+			<li><%= link_to "Account Settings", edit_user_registration_path(current_user) %></li>
+			<li><%= link_to "Logout", destroy_user_session_path(current_user), :method => :delete %></li>
+			<% else %>
+			<li><%= link_to "Log in!", new_user_session_path %></li>
+			<% end %>
+		</ul>
+	</nav>
+</header>
+
+<section id="alerts">
+	<% unless flash[:notice].blank? %>
+		<div class="alert alert-success"><%= flash[:notice] %></div>
+	<% end %>
+	<% unless flash[:alert].blank? %>
+		<div class="alert alert-error"><%= flash[:alert] %></div>
+	<% end %>
+</section>
 
 <%= yield %>
 
