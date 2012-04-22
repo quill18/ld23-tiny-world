@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422220524) do
+ActiveRecord::Schema.define(:version => 20120422230556) do
 
   create_table "game_units", :force => true do |t|
     t.integer  "game_id"
@@ -134,8 +134,8 @@ ActiveRecord::Schema.define(:version => 20120422220524) do
   add_index "units", ["tag"], :name => "index_units_on_tag"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                   :default => "", :null => false
-    t.string   "encrypted_password",      :default => "", :null => false
+    t.string   "email",                   :default => "",   :null => false
+    t.string   "encrypted_password",      :default => "",   :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -144,10 +144,15 @@ ActiveRecord::Schema.define(:version => 20120422220524) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "nickname"
     t.integer  "notification_email_time", :default => 60
+    t.integer  "xp",                      :default => 0
+    t.integer  "elo",                     :default => 1000
+    t.integer  "wins",                    :default => 0
+    t.integer  "loses",                   :default => 0
+    t.float    "win_ratio",               :default => 0.0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -26,11 +26,13 @@
 			<li><%= link_to "Logout", destroy_user_session_path(current_user), :method => :delete %></li>
 			<li><%= link_to "Account Settings", edit_user_registration_path(current_user) %></li>
 			<li><%= link_to "View/Create Maps", maps_path %>
+			<li><%= link_to "Leaderboard", stats_index_path %>
 			<li><%= link_to "Play a Game!", user_game_path(current_user.id) %>
 			<li id="toolbar_notifications" data-ajax-url="<%= reload_notifications_path %>"><%= render :partial => "layouts/notifications" %></li>
 			<% else %>
 			<li><%= link_to "Log in!", new_user_session_path %></li>
 			<li><%= link_to "View/Create Maps", maps_path %>
+			<li><%= link_to "Leaderboard", stats_index_path %>
 			<li><%= link_to "Play a Game!", games_path %>
 			<% end %>
 		</ul>

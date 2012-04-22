@@ -51,9 +51,10 @@ Sunday = Polish.
  x AJAX notification updater
  x Customize email notification times and/or disable
  - Email notifications
- - Win rating
- - Random/Rated Matchmaking
  - Aquarium borders on game screen
+ - Win rating
+ - XP and Ranks
+ - Random/Rated Matchmaking
 
 
  MEDIUM PRIORITY

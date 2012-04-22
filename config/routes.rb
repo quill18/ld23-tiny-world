@@ -1,5 +1,9 @@
 TestApp::Application.routes.draw do
 
+  get "stats/index"
+  get "stats/show"
+  post "stats/search"
+
   resources :notifications do
     collection do
       post 'delete'

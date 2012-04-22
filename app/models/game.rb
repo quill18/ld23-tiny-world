@@ -245,6 +245,8 @@ class Game < ActiveRecord::Base
 				winning_player = self.players.where('team_id <> ?',player.team_id).first
 				set_winning_player(winning_player)
 
+				adjust_ratings(winning_player, player)
+
 				notification = Notification.create(
 						:game_id => self.id,
 						:user_id => player.user.id,
@@ -265,13 +267,50 @@ class Game < ActiveRecord::Base
 	end
 
 	def player_surrender!(player)
-		set_winning_player( opponent_for_player(player) )
+		winner = opponent_for_player(player)
+		set_winning_player( winner )
 		self.save!
 		notification = Notification.create(
 				:game_id => self.id,
 				:user_id => winning_user.id,
 				:message => "Your opponent surrendered!"
 			)
+		adjust_ratings(winner, player)
+	end
+
+	def adjust_ratings(winner, loser)
+		winner.user.xp += 10
+		loser.user.xp  += 5
+
+		# winning = 1
+		# losing  = 0
+
+		expected_score_winner = 1.0 / (  1.0 + 
+				(
+					10.0**((loser.user.elo.to_f - winner.user.elo.to_f) / 400.0) 
+				)
+			)
+
+
+		expected_score_loser = 1.0 / (  1.0 + 
+				(
+					10.0**((winner.user.elo.to_f - loser.user.elo.to_f) / 400.0) 
+				)
+			)
+
+		k = 32.0
+
+		change_winner = k * (1.0 - expected_score_winner)
+		change_loser  = k * (0.0 - expected_score_loser)
+
+		winner.user.elo += change_winner.to_i
+		loser.user.elo += change_loser.to_i
+
+		winner.user.wins += 1
+		loser.user.loses += 1
+
+		winner.user.save!
+		loser.user.save!
 	end
 
 	def opponent_for_user(user)
