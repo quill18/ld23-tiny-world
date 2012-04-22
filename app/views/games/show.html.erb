@@ -1,4 +1,9 @@
-<h2>Game #<%=@game.id%> on <%=@game.map.name%> by <%= n(@game.map.user) %></h2>
+<%
+	real_map = Map.find(@game.map.real_map_id)
+	unless real_map.nil?
+%>
+<%= render :partial => "maps/map_info", :locals => { :map => real_map } %>
+<% end %>
 
 <div class="game-container">
 	<%= render :partial => "game_sidepanel" %>

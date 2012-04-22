@@ -113,7 +113,7 @@ class MapsController < ApplicationController
 
     @map.update_vote_total!
 
-    render :partial => "map_info_inner"
+    render :partial => "map_info_inner", :locals => { :map => @map }
   end
 
   private
