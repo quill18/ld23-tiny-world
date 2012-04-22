@@ -57,11 +57,25 @@ table.map {
 			}
 		}
 
-		/*&:hover {
-			div.healthbar {
-				overflow: visible;
+		div.shield {
+			height: 32px;
+			width: 32px;
+			background-image: url("unit_sheet.png");
+			background-position: 0px -352px;
+			span.movement {
+				position: absolute;
+				top: 12px;
+				left: 4px;
+				font-size: 10px;
+				color: white;
 			}
-		}*/
+		}
+	}
+
+	div.unit[data-team_id="1"] {
+		div.shield {
+			background-position: -32px -352px;
+		}
 	}
 }
 

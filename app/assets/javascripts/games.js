@@ -7,9 +7,8 @@ $(function() {
 			return;
 
 		// This is just a generic cancel button right now
-		$("table.map-game div.unit").removeClass("active");
-		$("div.unit-button").removeClass("active");
-		$(this).addClass("active");
+		cancelModes();
+		$(this).addClass("active");	
 	});
 	$(".tool-button").first().addClass("active");
 	
@@ -45,6 +44,11 @@ $(function() {
 	setupUnitHealthBars();
 });
 
+function cancelModes() {
+	$("table.map-game div.unit").removeClass("active");
+	$("div.unit-button").removeClass("active");
+}
+
 function setupUnitHealthBars() {
 	$("table.map-game div.unit div.healthbar").each(function () {
 		$(this).width($(this).data("percentage")+"%");
@@ -67,8 +71,9 @@ function setupUnitClicking() {
 		if(ajax_waiting())
 			return;
 
-		if(isUnitBuildingMode())
-			return;
+		if(isUnitBuildingMode()) {
+			cancelModes();
+		}
 
 		if($(this).data("team_id") != parseInt($("#current_team_id").val()))
 			return;
@@ -164,10 +169,17 @@ function processJSON(results) {
 			if(unit.length == 0) {
 				// We need to create the unit
 				unit = $('<div class="unit" data-unit_id="'+game_unit.id+'" data-unit_tag="'+game_unit.unit.tag+'" data-team_id="'+game_unit.team_id+'"></div>');
-				var percentage = 100*game_unit.current_hitpoints/game_unit.unit.hitpoints;
-				var healthbar = $('<div class="healthbar" data-percentage="'+percentage+'">');
+				var healthbar = $('<div class="healthbar" data-percentage="0">');
 				healthbar.appendTo(unit);
+
+				var shield = $('<div class="shield"><span class="movement">0</span></div>');
+				shield.appendTo(unit);
 			}
+
+			var percentage = 100*game_unit.current_hitpoints/game_unit.unit.hitpoints;
+			unit.find(".healthbar").attr("data-percentage", percentage);
+
+			unit.find(".movement").html(game_unit.movement_left);
 
 			if (game_unit.current_hitpoints > 0) {
 				var real_cell = $("td.tile[data-x="+game_unit.x+"][data-y="+game_unit.y+"]")

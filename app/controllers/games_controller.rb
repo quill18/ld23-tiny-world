@@ -108,7 +108,7 @@ class GamesController < ApplicationController
     response = @game.move_unit!(params[:fromX].to_i, params[:fromY].to_i, params[:toX].to_i, params[:toY].to_i, @player)
 
     respond_to do |format|
-      format.json { render json: response }
+      format.json { render json: response.to_json( :include => :unit ) }
     end
   end
 
