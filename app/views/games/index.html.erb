@@ -30,6 +30,7 @@
     <td><%= link_to 'Edit', edit_game_path(game) %></td>
   </tr>
 <% rescue %>
+  BAD GAME: <%= game.inspect %>
 <% end %>
 <% end %>
 </table>
