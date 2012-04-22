@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :nickname, :length => {:minimum => 3, :maximum => 20}, :uniqueness => true
 
   has_many :players
-  has_many :games, :through => :players
+  has_many :games, :through => :players, :order => "winning_player_id"
 
   has_many :map_votes
 end

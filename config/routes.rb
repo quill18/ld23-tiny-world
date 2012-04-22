@@ -6,6 +6,7 @@ TestApp::Application.routes.draw do
     end
 
     member do
+      get 'user'
       get 'add_unit'
       get 'move_unit'
       post 'end_turn'

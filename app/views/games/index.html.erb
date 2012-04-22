@@ -1,16 +1,7 @@
 <h1>Listing games</h1>
 
-<%= form_tag by_user_games_path do %>
-  <label for="user_id">Show only games for:</label>
-  <%= select_tag( 
-    "user_id", 
-    options_from_collection_for_select(@users, 'id', 'nickname', params[:user_id]), 
-    :include_blank => true ) %>
-  <label>Show Completed Games?
-    <%= check_box_tag "show_completed", 1, params[:show_completed]=="1" %>
-  </label>
-  <%= submit_tag "Go" %>
-  <%= link_to "Reset", games_path, :method => "get" %>
+<% unless params[:id].blank? %>
+  <%= link_to "Show Everyone's Games!", games_path, :class => "btn" %>
 <% end %>
 
 <table class="game-list table table-striped">

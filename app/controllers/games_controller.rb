@@ -2,19 +2,21 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    if params[:user_id].blank?
-      if params[:show_completed] == "1"
-        @games = Game.all
-      else
-        @games = Game.where(:winning_player_id => nil)
-      end
+    if params[:id].blank?
+      #if params[:show_completed] == "1"
+        @games = Game.order("winning_player_id")
+      #else
+      #  @games = Game.where(:winning_player_id => nil)
+      #end
     else
-      if params[:show_completed] == 1
-        @games = User.find(params[:user_id]).games
-      else
-        @games = User.find(params[:user_id]).games.where(:winning_player_id => nil)
-      end
+      #if params[:show_completed] == 1
+        @games = User.find(params[:id]).games.order("winning_player_id")
+      #else
+      #  @games = User.find(params[:id]).games.where(:winning_player_id => nil)
+      #end
     end
+
+    #@games.order("winning_player_id")
 
     @users = User.order("nickname")
 
@@ -24,7 +26,7 @@ class GamesController < ApplicationController
     end
   end
 
-  def by_user
+  def user
     index
   end
 
