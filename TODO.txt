@@ -42,6 +42,7 @@ Sunday = Polish.
  x Styling
  x Sprite redo
  x Unit health not refreshing?
+ - Test in Firefox/IE and on the Mac
 
  HIGH PRIORITY
  x Notifications
@@ -52,9 +53,11 @@ Sunday = Polish.
  x Customize email notification times and/or disable
  - Email notifications
  - Aquarium borders on game screen
- - Win rating
- - XP and Ranks
+ x Win rating
+ x XP 
+ - XP Ranks
  - Random/Rated Matchmaking
+ - Time out players who don't make a move
 
 
  MEDIUM PRIORITY
@@ -66,15 +69,15 @@ Sunday = Polish.
 
  LOW PRIORITY
  - Game list filters should save to user profile (or at least the session)
- - Surrender Button
- - Unit health and stats on TOOLTIP
+ x Surrender Button
+ x Unit health and stats on TOOLTIP
  - Logging window?
- - Your game screen needs to show you your colour
- - Fill in missing sprites
- - Elo rankings
+ x Your game screen needs to show you your colour
+ x Fill in missing sprites
+ x Elo rankings
  - Sound
  - Music
- - critical hits, glancing blows
+ x critical hits, glancing blows
  - Neutral castles have neutral enemies
  - Terrain (weeds) bonus to defense
  - Maintenance cost for units?
@@ -82,7 +85,6 @@ Sunday = Polish.
  - Draw condition?
 	- Time expired?
  - Resource gathering?!?		-> Sand Dollars. Food Pellets. Algae. Pearls.
- - Test in Firefox/IE and on the Mac
  - Matchmaking improvements
  - Tile variations during editing
  - Better handling of maps when a user deletes his account
