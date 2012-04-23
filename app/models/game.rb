@@ -172,7 +172,16 @@ class Game < ActiveRecord::Base
 	end
 
 	def get_game_unit_at(x,y)
-		return game_units.where(:x => x, :y => y).first
+		if game_units.loaded?
+			# FIXME: Change to a binary search?
+			for game_unit in game_units
+				return game_unit if game_unit.x==x and game_unit.y==y
+			end
+		else
+			return game_units.where(:x => x, :y => y).first
+		end
+
+		return nil
 	end
 
 	def castles_for_player(player)

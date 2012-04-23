@@ -4,13 +4,13 @@ class GamesController < ApplicationController
   def index
     if params[:id].blank?
       #if params[:show_completed] == "1"
-        @games = Game.order("winning_player_id")
+        @games = Game.order("winning_player_id DESC")
       #else
       #  @games = Game.where(:winning_player_id => nil)
       #end
     else
       #if params[:show_completed] == 1
-        @games = User.find(params[:id]).games.order("winning_player_id")
+        @games = User.find(params[:id]).games.order("winning_player_id DESC")
       #else
       #  @games = User.find(params[:id]).games.where(:winning_player_id => nil)
       #end
@@ -37,7 +37,8 @@ class GamesController < ApplicationController
     # Riot Games: 2 years to add spectator mode
     # Quill18: About 4 hours into the project.
 
-    @game = Game.find(params[:id], :include => [{:map => :tiles}])
+    @game = Game.find(params[:id], :include => [{:map => {:tiles => :tile_type}}, {:game_units => :unit}, :players])
+    logger.info "PRE-CACHED GAME DETAILS"
     @player = @game.player_from_user(current_user)
 
     respond_to do |format|
