@@ -2,12 +2,14 @@
 	<h1>Leaderboards</h1>
 
 
+	<% if false %>
 	<div class="user_search">
 		<%= form_tag :action => stats_search_path do %>
 			<input type='text' name='search' placeholder='Search for a user by nickname.'>
 			<input type='submit' value='Go!'>
 		<% end %>
 	</div>
+	<% end %>
 
 	<div class="row">
 		<div class="leaderboard span4">
