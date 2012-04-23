@@ -14,7 +14,7 @@ mighty fish (and amphibians!)</p>
 <p>FTC is a turn-based multiplayer game. You move your units, then end your turn and your opponent will have a chance to do the same.</p>
 
 <p>Whenever it's your turn in a game, you'll get a notification via a little mail icon in the toolbar (this updates
-	automatically without needing to refresh the page!)	If you don't respond within a certain time, you will be emailed with a copy of the notification.  This behaviour can be tweaked and disabled in your account settings.</p>
+	automatically without needing to refresh the page!)</p>
 
 
 <h2>How do I play?</h2>
@@ -32,6 +32,45 @@ mighty fish (and amphibians!)</p>
 <h2>System Requirements</h2>
 
 <p>Any up-to-date web browser should be all you need, though Fish Tank Commander was primarily tested using Google Chrome.</p>
+
+<h2>Coming Soon!</h2>
+
+<p>48-hours isn't very long!  Here's what's planned for after the Ludum Dare voting is complete:</p>
+
+<h3>Gameplay:</h3>
+<ul>
+	<li>Unit placement/movement/combat will use WebSockets instead of AJAX, which should improve responsiveness considerably</li>
+	<li>Fog of War &amp; Line of Sight</li>
+	<li>More unit types including ranged units!</li>
+	<li>More special abilities. See through line of sight blockers? Armor penetration? Can 'jump' over units and obstacles?</li>
+	<li>There will be a turn limit for games, to deal with stalemate situations</li>
+	<li>After (2 days?) have passed with a player idle, opponent will be automatically awarded a victory</li>
+</ul>
+
+<h3>Matchmaking:</h3>
+<ul>
+	<li>Automatic pairing based on Elo and only vs active users</li>
+	<li>Maps will be randomly chosen, weight by popularity (maps you downvoted should not be considered)</li>
+	<li>Matches will consist of two games, where players swap red/blue teams between games</li>
+	<li>Match winner will be determined based on how many turns it took to win each game</li>
+	<li>Ability to decline a game without Elo loss on first turn (Direct challenges only, not matchmaking)</li>
+</ul>
+
+<h3>Website Improvements:</h3>
+<ul>
+	<li>Emailing of notifications after a certain time (configured/disabled in Account Settings)</li>
+	<li>Ranks/Leveling from XP</li>
+	<li>The ability to "email" another player by sending them a notification</li>
+	<li>Individual user stat pages</li>
+	<li>The ability to quickly see new maps and vote on them.</li>
+	<li>Gain XP for voting on maps!</li>
+	<li>Map/Game list will be paginated</li>
+	<li><b>And of course: Better art!</b></li>
+</ul>
+
+<h3>Found a bug? Have an idea for a new feature?</h3>
+
+<p>I can't make changes to the actual game until after the Ludum Dare voting is complete, but I'd still love to hear your suggestions.  <a href="https://github.com/quill18/ld23-tiny-world/issues">Please report any issues here.</a> </p>
 
 </article>
 

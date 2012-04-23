@@ -42,7 +42,7 @@ Sunday = Polish.
  x Styling
  x Sprite redo
  x Unit health not refreshing?
- - Test in Firefox/IE and on the Mac
+ x Test in Firefox/IE and on the Mac
 
  HIGH PRIORITY
  x Notifications
@@ -61,7 +61,7 @@ Sunday = Polish.
 
 
  MEDIUM PRIORITY
- - FIXME: When displaying game map, non-optimized requests for units are made on each tile
+ x FIXME: When displaying game map, non-optimized requests for units are made on each tile
  - Quick/mass voting tool -> Filtered to maps you haven't voted on yet
  - Protect vs forgery voting by mass bots by using form helpers
  - Pagination on maps page
