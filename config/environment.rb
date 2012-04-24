@@ -3,3 +3,8 @@ require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
 TestApp::Application.initialize!
+
+Rails::Initializer.run do |config|
+  config.middleware.use "NoWWW" if RAILS_ENV == 'production'
+end
+
