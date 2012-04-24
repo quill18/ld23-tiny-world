@@ -4,11 +4,10 @@ Fish Tank Commander is a turn-based tactics game set in an aquarium and original
 programmed in 48 hours by Martin "quill18" Glaude.
 
 NOTE: While the program code for this application is visible and cloneable on 
-Github, there is no explicit or implicit license allowing people to distribute,
-deploy, execute, or otherwise use this software.  The source code transparency
-exists for educational purposes and to allow the community to more easily
-contribute ideas to the project.  Until further notice, Martin "quill18" Glaude
-retains exclusive copyright to all content herein.
+Github, there is not yet any license available for this software.  You have no
+explicit or implicit right to distribute or use this software in any way. THIS
+WILL CHANGE SOON. Some work just has to be done first to select the correct
+open source license for the project.
 
 You can play Fish Tank Commander for free at:
 
