@@ -68,5 +68,5 @@ TestApp::Application.configure do
   config.action_mailer.default_url_options = { :host => 'fishtankcommander.com' }
 
   # Redirect www.fishtankcommander.com to fishcommander.com
-  config.middleware.use "NoWWW"
+  #config.middleware.use "NoWWW"
 end
