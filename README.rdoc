@@ -10,6 +10,5 @@ WILL CHANGE SOON. Some work just has to be done first to select the correct
 open source license for the project.
 
 You can play Fish Tank Commander for free at:
-
-  http://fishtankcommander.com
+http://fishtankcommander.com
 
