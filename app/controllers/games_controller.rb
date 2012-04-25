@@ -17,6 +17,9 @@ class GamesController < ApplicationController
 
     @users = User.order("nickname")
 
+    render :text => "Temporarily disabled."
+    return
+
     respond_to do |format|
       format.html { render :index }
       format.json { render json: @games }
