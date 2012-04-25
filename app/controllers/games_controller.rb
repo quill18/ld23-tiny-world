@@ -3,6 +3,7 @@ class GamesController < ApplicationController
   # GET /games.json
   def index
     if params[:id].blank?
+				raise "Disabled global game listing for performance reasons."
         @games = Game.order("winning_player_id DESC")
     else
         @games = Game.find(:all,
@@ -122,7 +123,7 @@ class GamesController < ApplicationController
   def surrender
     get_game
     @game.user_surrender!(current_user)
-    redirect_to games_url
+    redirect_to user_game_path(current_user.id)
   end
 
   private
