@@ -6,7 +6,11 @@ class GamesController < ApplicationController
         @games = Game.order("winning_player_id DESC")
     else
         user = User.find(params[:id])
-        @games = Game.find_by_sql("SELECT * FROM games WHERE id IN (SELECT game_id FROM players WHERE players.user_id=#{user.id})")
+        #        @games = Game.find_by_sql("SELECT * FROM games WHERE id IN (SELECT game_id FROM players WHERE players.user_id=#{user.id})")
+
+        players = user.players
+        @games = Game.where("player_id IN (#{players.map { |p| p.id }.join(",") })", :include => [:players, :current_player, :winning_player] )
+        #user.games.order("winning_player_id DESC")
     end
 
     #@games.order("winning_player_id")
