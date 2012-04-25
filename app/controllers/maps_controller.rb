@@ -2,7 +2,7 @@ class MapsController < ApplicationController
   # GET /maps
   # GET /maps.json
   def index
-    @maps = Map.where(:real_map_id => nil).order("vote_total DESC")
+    @maps = Map.where(:real_map_id => nil).include(:user).order("vote_total DESC")
 
     respond_to do |format|
       format.html # index.html.erb
