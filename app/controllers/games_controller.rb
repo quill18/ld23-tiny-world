@@ -5,17 +5,14 @@ class GamesController < ApplicationController
     if params[:id].blank?
         @games = Game.order("winning_player_id DESC")
     else
-        user = User.find(params[:id])
-        #        @games = Game.find_by_sql("SELECT * FROM games WHERE id IN (SELECT game_id FROM players WHERE players.user_id=#{user.id})")
-
-        players = user.players
-        @games = Game.where("id IN (#{players.map { |p| p.game_id }.join(",") })", :include => [{:players => :user}, {:current_player => :user}, {:winning_player=>:user}, :map] )
-        #user.games.order("winning_player_id DESC")
+        @games = Game.find(:all,
+            :conditions => "games.id IN (SELECT players.game_id FROM players WHERE players.user_id=#{params[:id]})",
+            :include => [{:players => :user}, :map],
+            :order => "winning_player_id DESC"
+          )
     end
 
-    #@games.order("winning_player_id")
-
-    @users = User.order("nickname")
+    #@users = User.order("nickname")
 
     respond_to do |format|
       format.html { render :index }

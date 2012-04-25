@@ -30,7 +30,10 @@ class Game < ActiveRecord::Base
 	end
 
 	def player_from_team_id(team_id)
-		return Player.where(:game_id => self.id, :team_id => team_id).first
+		for player in players
+			return player if player.team_id == team_id
+		end
+		return nil
 	end
 
 	def current_player
@@ -42,7 +45,11 @@ class Game < ActiveRecord::Base
 	end
 
 	def winning_player
-		return Player.find(self.winning_player_id)
+		for player in players
+			return player if player.id == self.winning_player_id
+		end
+		return nil
+
 	end
 
 	def winning_user
