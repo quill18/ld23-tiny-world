@@ -9,16 +9,13 @@ class GamesController < ApplicationController
         #        @games = Game.find_by_sql("SELECT * FROM games WHERE id IN (SELECT game_id FROM players WHERE players.user_id=#{user.id})")
 
         players = user.players
-        @games = Game.where("id IN (#{players.map { |p| p.game_id }.join(",") })", :include => [:players, :current_player, :winning_player] )
+        @games = Game.where("id IN (#{players.map { |p| p.game_id }.join(",") })", :include => [{:players => :user}, {:current_player => :user}, {:winning_player=>:user}, :map] )
         #user.games.order("winning_player_id DESC")
     end
 
     #@games.order("winning_player_id")
 
     @users = User.order("nickname")
-
-    render :text => "Temporarily disabled."
-    return
 
     respond_to do |format|
       format.html { render :index }
