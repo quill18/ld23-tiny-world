@@ -7,7 +7,6 @@ class GamesController < ApplicationController
     else
         user = User.find(params[:id])
         @games = Game.find_by_sql("SELECT * FROM games WHERE id IN (SELECT game_id FROM players WHERE players.user_id=#{user.id})")
-        @games = User.find(params[:id]).games.order("winning_player_id DESC")
     end
 
     #@games.order("winning_player_id")
