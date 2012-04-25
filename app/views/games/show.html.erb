@@ -1,5 +1,5 @@
 <%
-	real_map = Map.find(@game.map.real_map_id)
+	real_map = Map.find_by_id(@game.map.real_map_id)
 	unless real_map.nil?
 %>
 <%= render :partial => "maps/map_info", :locals => { :map => real_map } %>

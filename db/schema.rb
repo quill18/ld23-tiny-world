@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422234001) do
+ActiveRecord::Schema.define(:version => 20120425010055) do
 
   create_table "game_units", :force => true do |t|
     t.integer  "game_id"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20120422234001) do
   end
 
   add_index "games", ["map_id"], :name => "index_games_on_map_id"
+  add_index "games", ["winning_player_id"], :name => "index_games_on_winning_player_id"
 
   create_table "map_votes", :force => true do |t|
     t.integer  "map_id"
@@ -71,9 +72,9 @@ ActiveRecord::Schema.define(:version => 20120422234001) do
     t.integer  "user_id"
     t.integer  "game_id"
     t.text     "message"
-    t.integer  "viewed",     :default => 0
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
+    t.integer  "viewed",     :default => 0
   end
 
   add_index "notifications", ["game_id"], :name => "index_notifications_on_game_id"
@@ -119,14 +120,14 @@ ActiveRecord::Schema.define(:version => 20120422234001) do
 
   create_table "units", :force => true do |t|
     t.string   "name"
-    t.boolean  "is_bubble_walker"
+    t.boolean  "is_bubble_walker", :default => false
     t.integer  "hitpoints",        :default => 10
     t.integer  "damage",           :default => 5
     t.integer  "defense",          :default => 0
     t.integer  "range",            :default => 1
     t.integer  "speed",            :default => 2
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "tag"
     t.integer  "cost",             :default => 10
   end
