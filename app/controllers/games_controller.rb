@@ -3,17 +3,11 @@ class GamesController < ApplicationController
   # GET /games.json
   def index
     if params[:id].blank?
-      #if params[:show_completed] == "1"
         @games = Game.order("winning_player_id DESC")
-      #else
-      #  @games = Game.where(:winning_player_id => nil)
-      #end
     else
-      #if params[:show_completed] == 1
+        user = User.find(params[:id])
+        @games = Game.find_by_sql("SELECT * FROM games WHERE id IN (SELECT game_id FROM players WHERE players.user_id=#{user.id})")
         @games = User.find(params[:id]).games.order("winning_player_id DESC")
-      #else
-      #  @games = User.find(params[:id]).games.where(:winning_player_id => nil)
-      #end
     end
 
     #@games.order("winning_player_id")
