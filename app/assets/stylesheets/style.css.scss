@@ -8,6 +8,11 @@ body, html {
 	padding: 0px;
 }
 
+br.clear {
+	clear: both;
+}
+
+
 div.content {
 	margin: 4px;
 }
@@ -20,6 +25,9 @@ a:hover {
 	color: #ccc;
 }
 
+a.btn {
+	text-decoration: none;
+}
 a.btn-success, a.btn-success:visited {
 	color: white;
 }
