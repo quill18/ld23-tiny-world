@@ -1,3 +1,8 @@
+<%= link_to 'Play a game on this map!', new_game_path(:map_id => @map.id), :class => "btn btn-success" %>
+<% if @map.user == current_user %>
+<%= link_to 'Edit this map', edit_map_path(@map), :class => "btn btn-primary" %>
+<% end %>
+<%= link_to 'Back to map list', maps_path, :class => "btn" %>
 
   <%= render :partial => "map_info", :locals => { :map => @map} %>
 
@@ -23,7 +28,3 @@
 
 
 
-
-
-<%= link_to 'Edit', edit_map_path(@map) %> |
-<%= link_to 'Back', maps_path %>

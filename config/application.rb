@@ -62,7 +62,7 @@ module TestApp
     config.autoload_paths += %W(#{config.root}/lib)
     config.middleware.use "NoWWW"
 
-    # Stop trying to connect to the database during Heroky precompiling
+    # Stop trying to connect to the database during Heroku precompiling
     config.assets.initialize_on_precompile = false
 
   end
