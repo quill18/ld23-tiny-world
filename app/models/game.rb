@@ -151,7 +151,7 @@ class Game < ActiveRecord::Base
 
 		damage = min_damage + rand(damage) + 1
 
-		damage -=  - other_game_unit.unit.defense
+		damage -= other_game_unit.unit.defense
 
 		other_game_unit.current_hitpoints -= damage
 		if other_game_unit.current_hitpoints <= 0
