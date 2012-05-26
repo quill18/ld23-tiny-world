@@ -1,6 +1,7 @@
-<h1>New game</h1>
 
 <%= form_for(@game) do |f| %>
+  <h2>New game</h2>
+
   <% if @game.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
@@ -13,7 +14,7 @@
     </div>
   <% end %>
 
-  <p>Dummy placeholder for matchmaking.</p>
+  <p>Real match-making and online player lists coming Soon&#0153;.</p>
 
   <div class="field">
     <label>Map</label>

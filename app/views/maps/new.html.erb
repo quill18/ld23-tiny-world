@@ -1,6 +1,7 @@
-<h1>New map</h1>
 
 <%= form_for(@map) do |f| %>
+  <h2>New map</h2>
+
   <% if @map.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@map.errors.count, "error") %> prohibited this map from being saved:</h2>
@@ -14,19 +15,19 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name, "Map Name" %><br />
+    <%= f.label :name, "Map Name" %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :height %><br />
+    <%= f.label :height %>
     <%= f.number_field :height %>
   </div>
   <div class="field">
-    <%= f.label :width %><br />
+    <%= f.label :width %>
     <%= f.number_field :width %>
   </div>
   <div class="actions">
