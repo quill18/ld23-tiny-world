@@ -8,6 +8,7 @@ gem 'rails', '3.2.2'
 
 group :production, :staging do
   gem "pg"
+  gem 'thin'
 end
 
 group :development, :test do
@@ -31,7 +32,6 @@ gem 'devise'
 
 gem 'jquery-rails'
 
-gem 'thin'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
