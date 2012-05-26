@@ -325,7 +325,7 @@ class Game < ActiveRecord::Base
 	def cancel_game!(player)
 		winner = opponent_for_player(player)
 		self.winning_player_id = nil
-		self.current_team_id = -winner.team_id
+		self.current_team_id = -1
 		self.save!
 
 		notification = Notification.create(
