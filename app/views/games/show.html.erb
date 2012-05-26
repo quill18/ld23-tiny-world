@@ -1,10 +1,11 @@
 <%
 	real_map = Map.find_by_id(@game.map.real_map_id)
-	unless real_map.nil?
+	if real_map.nil?
+		real_map = @game.map
+	end
 %>
 <%= render :partial => "maps/map_info", :locals => { :map => real_map } %>
-<% end %>
-
+	
 <div class="game-container">
 	<%= render :partial => "game_sidepanel" %>
 	<%= render :partial => "game_map" %>
