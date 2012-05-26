@@ -1,6 +1,6 @@
 				<a href="<%= url_for notifications_path %>">
 				<% if current_user.notifications.unread.length > 0 %>
-					<i class="icon-envelope icon-white"></i> (<%= current_user.notifications.unread.length %>)
+					<i class="icon-envelope icon-white"></i> (<span id="new_notifications"><%= current_user.notifications.unread.length %></span>)
 				<% else %>
 					<i class="icon-envelope"></i>
 				<% end %>
