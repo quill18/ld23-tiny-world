@@ -9,14 +9,32 @@
 
 	&[data-tile_type_tag="bubbles"] {
 		background-position: -32px -32px;
+		&[data-tile-variant="1"] {
+			background-position: -32px -64px;
+		}
+		&[data-tile-variant="2"] {
+			background-position: -32px -96px;
+		}
 	}
 
 	&[data-tile_type_tag="weeds"] {
 		background-position: -64px -32px;
+		&[data-tile-variant="1"] {
+			background-position: -64px -64px;
+		}
+		&[data-tile-variant="2"] {
+			background-position: -64px -96px;
+		}
 	}
 
 	&[data-tile_type_tag="logs"] {
 		background-position: -96px -32px;
+		&[data-tile-variant="1"] {
+			background-position: -96px -64px;
+		}
+		&[data-tile-variant="2"] {
+			background-position: -96px -96px;
+		}
 	}
 
 	&[data-tile_type_tag="castle0"] {
@@ -31,12 +49,13 @@
 		background-position: -192px -32px;
 	}
 
+	/*
 	&[data-tile-variant="1"] {
 		background-position-y: -64px;
 	}
 	&[data-tile-variant="2"] {
 		background-position-y: -96px;
-	}
+	}*/
 }
 
 
