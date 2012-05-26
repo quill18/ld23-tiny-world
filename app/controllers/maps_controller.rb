@@ -61,6 +61,12 @@ class MapsController < ApplicationController
 
     respond_to do |format|
       if @map.save
+        # User automatically self-upvotes on creation
+        map_vote = MapVote.find_or_create_by_map_id_and_user_id(@map.id, current_user.id)
+        map_vote.vote = 1
+        map_vote.save!
+        @map.update_vote_total!
+
         format.html { redirect_to @map, notice: 'Map was successfully created.' }
         format.json { render json: @map, status: :created, location: @map }
       else
