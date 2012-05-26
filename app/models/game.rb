@@ -99,14 +99,30 @@ class Game < ActiveRecord::Base
 		return {:message => "Out of movement!"} if game_unit.movement_left <= 0
 
 		other_game_unit = get_game_unit_at(toX, toY)
+
+		result = {}
 		unless other_game_unit.nil?
 			if other_game_unit.team_id == game_unit.team_id
 				return {:message => "One of your units is in the way!"}
 			else
-				return fight_unit!(game_unit, other_game_unit)
+				result = fight_unit!(game_unit, other_game_unit)
 			end
 		end
 
+		if result.empty? or result[:target_died]==true
+			move_unit_real!(fromX, fromY, toX, toY, player, game_unit)
+		end
+
+		if result[:game_units].nil?
+			result[:game_units] = [game_unit]
+		else
+			result[:game_units] += [game_unit]
+		end
+
+		return result
+	end
+
+	def move_unit_real!(fromX, fromY, toX, toY, player, game_unit)
 		fromTile = self.map.get_tile_at(fromX, fromY)
 		toTile = self.map.get_tile_at(toX, toY)
 
@@ -125,8 +141,6 @@ class Game < ActiveRecord::Base
 		game_unit.y = path.last.y
 
 		game_unit.save!
-
-		return {:game_units => [game_unit]}
 	end
 
 	def fight_unit!(game_unit, other_game_unit)
@@ -137,7 +151,7 @@ class Game < ActiveRecord::Base
 
 		damage = min_damage + rand(damage) + 1
 
-		damage -=  - other_game_unit.unit.defense
+		damage -= other_game_unit.unit.defense
 
 		other_game_unit.current_hitpoints -= damage
 		if other_game_unit.current_hitpoints <= 0
@@ -157,7 +171,8 @@ class Game < ActiveRecord::Base
 		return {
 			:game_units => [game_unit, other_game_unit], 
 			:kills => kill_totals,
-			:units => unit_totals
+			:units => unit_totals,
+			:target_died => (other_game_unit.current_hitpoints <= 0)
 		}
 	end
 
