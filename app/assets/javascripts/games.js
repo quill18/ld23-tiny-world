@@ -12,7 +12,6 @@ $(function() {
 
 		// This is just a generic cancel button right now
 		cancelModes();
-		$(this).addClass("active");	
 	});
 	$(".game_tools .tool-button").first().addClass("active");
 	
@@ -64,6 +63,7 @@ $(function() {
 function cancelModes() {
 	$("table.map-game div.unit").removeClass("active");
 	$("div.unit-button").removeClass("active");
+	$(".game_tools .tool-button").addClass("active");
 }
 
 function setupUnitHealthBars() {
@@ -90,8 +90,8 @@ function setupUnitClicking() {
 
 
 		if(isUnitBuildingMode()) {
-			//cancelModes();
-			return;
+			cancelModes();
+			//return;
 		}
 
 		if($(this).data("team_id") != parseInt($("#current_team_id").val()))
