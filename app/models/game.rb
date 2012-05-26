@@ -306,6 +306,11 @@ class Game < ActiveRecord::Base
 	end
 
 	def player_surrender!(player)
+		if self.turn_counter <= 1
+			cancel_game!(player)
+			return
+		end
+
 		winner = opponent_for_player(player)
 		set_winning_player( winner )
 		self.save!
@@ -316,6 +321,28 @@ class Game < ActiveRecord::Base
 			)
 		adjust_ratings(winner, player)
 	end
+
+	def cancel_game!(player)
+		winner = opponent_for_player(player)
+		self.winning_player_id = nil
+		self.current_team_id = -winner.team_id
+		self.save!
+
+		notification = Notification.create(
+				:game_id => self.id,
+				:user_id => winner.user.id,
+				:message => "Your opponent canceled the game on the first turn, so your rating is unaffected."
+			)
+	end
+
+	def is_active?
+		return self.current_team_id >= 0
+	end
+
+	def is_draw?
+		return (!self.is_active?() and self.winning_player_id.nil?)
+	end
+
 
 	def adjust_ratings(winner, loser)
 		winner.user.xp += 10

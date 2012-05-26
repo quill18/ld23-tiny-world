@@ -13,18 +13,26 @@
   </tr>
 
 <% @games.each do |game| %>
-<% begin %>
   <tr>
     <td><%= game.players.map {|p| n(p.user)}.join(", ") %></td>
     <td><%= game.map.name %></td>
-    <td class="<%= !game.current_player.nil? and game.current_player.user==current_user ? "your-turn" : ""%>">
-      <%= game.winning_player_id.nil? ? "#{n(game.current_player.user)}'s Turn" : "Winner: #{n(game.winning_player.user)}" %>
+    <% if game.is_active? %>
+          <td class="<%= !game.current_player.nil? and game.current_player.user==current_user ? "your-turn" : ""%>">
+            <%= n(game.current_player.user) %>'s Turn
+          </td>
+    <% else %>
+      <td>
+        <%= game.is_draw? ? "Cancelled" : "Winner: #{n(game.winning_player.user)}" %>
+      </td>
+    <% end %>
+    <td>
+        <% if game.is_active? and !current_user.nil? and !current_user.games.index(game).nil? %>
+          <%= link_to 'Play!', game, :class => "btn #{game.current_player.user == current_user ? "btn-success" : ""}" %>
+        <% else %>
+          <%= link_to 'View', game, :class => "btn" %>
+        <% end %>
     </td>
-    <td><%= link_to 'Play!', game, :class => "btn" %></td>
   </tr>
-<% rescue %>
-    <% raise game.inspect %>
-<%end %>
 <% end %>
 </table>
 

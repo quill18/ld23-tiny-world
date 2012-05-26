@@ -11,7 +11,12 @@
   <br class="clear">
 	  <div class="actions">
     <%= button_to "End Turn", end_turn_game_path(@game), :class => "btn btn-success" %>
-    <%= button_to "Surrender", surrender_game_path(@game), :class => "btn btn-danger", :confirm => "Give up?!?" %>
+
+    <% if @game.turn_counter <= 1 %>
+      <%= button_to "Cancel Game", surrender_game_path(@game), :class => "btn btn-danger", :confirm => "Cancel this game?" %>
+    <% else %>
+      <%= button_to "Surrender", surrender_game_path(@game), :class => "btn btn-danger", :confirm => "Give up?!?" %>
+    <% end %>
   </div>
   <% end %>
 </div>

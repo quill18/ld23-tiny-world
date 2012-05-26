@@ -2,7 +2,12 @@
 		<table class="scoreboard">
 			<tr>
 				<th colspan="2">
-					<%= @game.current_player.user.nickname %>'s turn #<%= (@game.turn_counter/2).floor + 1 %>
+					<% if @game.is_active? %>
+						<%= @game.current_player.user.nickname %>'s turn #<%= (@game.turn_counter/2).floor + 1 %>
+					<% else %>
+							Ended 
+						on turn #<%= (@game.turn_counter/2).floor + 1 %>
+					<% end %>
 				</th>
 			</tr>
 		</table>
