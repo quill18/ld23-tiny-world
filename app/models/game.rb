@@ -240,6 +240,12 @@ class Game < ActiveRecord::Base
 	end
 
 	def end_turn!
+		# Delete all notifications about this game
+		# This line only destroys in memory?!?
+		self.notifications.destroy
+		# So we need to call this explcitly?  FIXME: There must be another function that does both?
+		Notification.destroy_all(:game_id => self.id)
+
 		# Flip castles
 		for game_unit in self.game_units.where(:team_id => self.current_team_id)
 			# Capture castles, if a unit is standing on one.
