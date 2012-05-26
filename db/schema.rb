@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120526141051) do
+ActiveRecord::Schema.define(:version => 20120526145329) do
 
   create_table "game_units", :force => true do |t|
     t.integer   "game_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20120526141051) do
     t.timestamp "created_at",                       :null => false
     t.timestamp "updated_at",                       :null => false
     t.integer   "winning_player_id"
+    t.integer   "turn_counter",      :default => 0
   end
 
   add_index "games", ["map_id"], :name => "index_games_on_map_id"

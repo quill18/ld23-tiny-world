@@ -25,6 +25,16 @@ div.game-container {
 		}
 		margin-bottom: .5em;
 
+		&.turn {
+			// Turn Counter
+			border-color: #070;
+			table.scoreboard {
+				th {
+					background-color: #070;
+				}
+			}
+		}
+
 		&.team0 {
 			// Red Team
 			background-color: #833;

@@ -1,3 +1,14 @@
+	<div class="scoreboard turn">
+		<table class="scoreboard">
+			<tr>
+				<th colspan="2">
+					Turn #<%= (@game.turn_counter/2).floor + 1 %>
+				</th>
+			</tr>
+		</table>
+	</div>
+
+
 	<% for team_id in 0..1 %>
 <div class="scoreboard team<%=team_id%>">
 <table class="scoreboard">

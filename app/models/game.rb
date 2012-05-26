@@ -267,6 +267,8 @@ class Game < ActiveRecord::Base
 			start_new_turn!()		
 		end
 
+		self.turn_counter += 1
+
 		self.save!
 	end
 
