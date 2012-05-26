@@ -179,7 +179,7 @@ function moveUnitTo(cell) {
 		processJSON(results);
 	}).error(function() {
 		ajax_stop();
-		alert("Server fail!");
+		serverFailAlert();
 	});
 
 }
@@ -271,7 +271,11 @@ function addUnit(cell) {
 
 	}).error(function() {
 		ajax_stop();
-		alert("Server fail!");
+		serverFailAlert();
 	});
 }
 
+function serverFailAlert() {
+	alert("Server fail!");
+	window.location.reload();	
+}
