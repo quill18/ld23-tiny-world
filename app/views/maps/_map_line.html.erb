@@ -1,0 +1,22 @@
+  <tr>
+    <td><%= map.vote_total %></td>
+    <td><%= map.name %></td>
+    <td><%= map.user.nickname %></td>
+    <td><%= link_to 'View', map, :class => "btn" %></td>
+    <td><%= link_to 'Play a Game!', new_game_path(:map_id => map.id), :class => "btn btn-success" %></td>
+    <% if map.user == current_user %>
+    <td><%= link_to 'Edit', edit_map_path(map), :class => "btn" %></td>
+    <td>
+        <% if map.published == true %>
+        <%= link_to 'Status: Public', unpublish_map_path(map), method: :post, :class => "btn btn-success" %>
+        <% else %>
+        <%= link_to 'Status: Private', publish_map_path(map), method: :post, :class => "btn btn-danger" %>
+        <% end %>
+    </td>
+    <td><%= link_to 'Destroy', map, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %></td>
+    <% else %>
+    <td></td>
+    <td></td>
+    <td></td>
+    <% end %>
+  </tr>

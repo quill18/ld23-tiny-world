@@ -2,7 +2,13 @@ class MapsController < ApplicationController
   # GET /maps
   # GET /maps.json
   def index
-    @maps = Map.where(:real_map_id => nil).includes(:user).order("vote_total DESC")
+
+    if current_user.nil?
+      @maps = Map.where(:real_map_id => nil, :published => true).includes(:user).order("vote_total DESC")
+    else
+      @maps = Map.where(:real_map_id => nil, :published => true).where("user_id <> #{current_user.id}").includes(:user).order("vote_total DESC")
+      @my_maps = Map.where(:real_map_id => nil).where("user_id = #{current_user.id}").includes(:user).order("vote_total DESC")
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -90,6 +96,20 @@ class MapsController < ApplicationController
       format.html { redirect_to maps_url }
       format.json { head :no_content }
     end
+  end
+
+  def publish
+    get_map
+    @map.published = true
+    @map.save!
+    redirect_to @map
+  end
+
+  def unpublish
+    get_map
+    @map.published = false
+    @map.save!
+    redirect_to @map
   end
 
   def vote

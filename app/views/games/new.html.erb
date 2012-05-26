@@ -17,7 +17,7 @@
 
   <div class="field">
     <label>Map</label>
-    <%= f.select :map_id, Map.where(:real_map_id => nil).map {|m| [m.name, m.id]} %>
+    <%= f.select :map_id, Map.where(:real_map_id => nil, :published => true).map {|m| [m.name, m.id]} %>
   </div>
 
   <div class="field">

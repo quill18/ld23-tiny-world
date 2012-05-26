@@ -1,8 +1,15 @@
 <%= link_to 'Play a game on this map!', new_game_path(:map_id => @map.id), :class => "btn btn-success" %>
 <% if @map.user == current_user %>
 <%= link_to 'Edit this map', edit_map_path(@map), :class => "btn btn-primary" %>
+  <% if @map.published == true %>
+    <%= link_to 'Status: Public', unpublish_map_path(@map), method: :post, :class => "btn btn-success" %>
+  <% else %>
+    <%= link_to 'Status: Private', publish_map_path(@map), method: :post, :class => "btn btn-danger" %>
+  <% end %>
 <% end %>
 <%= link_to 'Back to map list', maps_path, :class => "btn" %>
+
+
 
   <%= render :partial => "map_info", :locals => { :map => @map} %>
 
@@ -27,4 +34,9 @@
   </table>
 
 
+<% if @map.user == current_user and  @map.published == false %>
+<div class="alert alert-error">
+    This map is <b>PRIVATE</b>. Nobody can play it!  <%= link_to 'Publish this map.', publish_map_path(@map), method: :post, :class => "btn btn-success" %>
+</div>
+<% end %>
 

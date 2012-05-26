@@ -37,6 +37,8 @@ TestApp::Application.routes.draw do
     end
     member do
       post 'vote'
+      post 'publish'
+      post 'unpublish'
     end
   end
 
