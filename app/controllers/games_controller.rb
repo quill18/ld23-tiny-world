@@ -6,11 +6,14 @@ class GamesController < ApplicationController
 				raise "Disabled global game listing for performance reasons."
         @games = Game.order("winning_player_id DESC")
     else
-        @games = Game.find(:all,
-            :conditions => "games.id IN (SELECT players.game_id FROM players WHERE players.user_id=#{params[:id]})",
-            :include => [{:players => :user}, :map],
-            :order => "winning_player_id DESC"
-          )
+        #@games = Game.find(:all,
+        #    :conditions => "games.id IN (SELECT players.game_id FROM players WHERE players.user_id=#{params[:id]})",
+        #    :include => [{:players => :user}, :map],
+        #    :order => "winning_player_id DESC"
+        #  ).page(params[:page])
+        @games = Game.where(
+						"games.id IN (SELECT players.game_id FROM players WHERE players.user_id=#{params[:id]})",
+            :include => [{:players => :user}, :map]).order("winning_player_id DESC").page(params[:page])
     end
 
     #@users = User.order("nickname")

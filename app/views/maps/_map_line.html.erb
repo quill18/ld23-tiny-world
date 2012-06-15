@@ -8,9 +8,9 @@
     <td><%= link_to 'Edit', edit_map_path(map), :class => "btn" %></td>
     <td>
         <% if map.published == true %>
-        <%= link_to 'Status: Public', unpublish_map_path(map), method: :post, :class => "btn btn-success" %>
+        <%= link_to 'Status: Public', unpublish_map_path(map, :index => "true"), method: :post, :class => "btn btn-success" %>
         <% else %>
-        <%= link_to 'Status: Private', publish_map_path(map), method: :post, :class => "btn btn-danger" %>
+        <%= link_to 'Status: Private', publish_map_path(map, :index => "true"), method: :post, :class => "btn btn-danger" %>
         <% end %>
     </td>
     <td><%= link_to 'Destroy', map, confirm: 'Are you sure?', method: :delete, :class => "btn btn-danger" %></td>

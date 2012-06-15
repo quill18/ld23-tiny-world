@@ -4,9 +4,9 @@ class MapsController < ApplicationController
   def index
 
     if current_user.nil?
-      @maps = Map.where(:real_map_id => nil, :published => true).includes(:user).order("vote_total DESC")
+      @maps = Map.where(:real_map_id => nil, :published => true).includes(:user).order("vote_total DESC").page(params[:page])
     else
-      @maps = Map.where(:real_map_id => nil, :published => true).where("user_id <> #{current_user.id}").includes(:user).order("vote_total DESC")
+      @maps = Map.where(:real_map_id => nil, :published => true).where("user_id <> #{current_user.id}").includes(:user).order("vote_total DESC").page(params[:page])
       @my_maps = Map.where(:real_map_id => nil).where("user_id = #{current_user.id}").includes(:user).order("vote_total DESC")
     end
 
@@ -108,14 +108,22 @@ class MapsController < ApplicationController
     get_map
     @map.published = true
     @map.save!
-    redirect_to @map
+		if params[:index] == "true"
+			redirect_to maps_url
+		else
+    	redirect_to @map
+		end
   end
 
   def unpublish
     get_map
     @map.published = false
     @map.save!
-    redirect_to @map
+		if params[:index] == "true"
+			redirect_to maps_url
+		else
+    	redirect_to @map
+		end
   end
 
   def vote
