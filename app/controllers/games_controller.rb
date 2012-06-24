@@ -13,7 +13,7 @@ class GamesController < ApplicationController
         #  ).page(params[:page])
         @games = Game.where(
 						"games.id IN (SELECT players.game_id FROM players WHERE players.user_id=#{params[:id]})",
-            :include => [{:players => :user}, :map]).order("winning_player_id DESC").page(params[:page])
+            :include => [{:players => :user}, :map]).order("winning_player_id DESC").paginate(:page => params[:page], :per_page => 20)
     end
 
     #@users = User.order("nickname")
