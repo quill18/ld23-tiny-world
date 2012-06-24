@@ -3,11 +3,20 @@ class MapsController < ApplicationController
   # GET /maps.json
   def index
 
+    per_page= 20
+
     if current_user.nil?
-      @maps = Map.where(:real_map_id => nil, :published => true).includes(:user).order("vote_total DESC").page(params[:page])
+      @maps = Map.where(:real_map_id => nil, :published => true).includes(:user).order("vote_total DESC").paginate(:page => params[:page], :per_page => per_page)
     else
-      @maps = Map.where(:real_map_id => nil, :published => true).where("user_id <> #{current_user.id}").includes(:user).order("vote_total DESC").page(params[:page])
-      @my_maps = Map.where(:real_map_id => nil).where("user_id = #{current_user.id}").includes(:user).order("vote_total DESC")
+      # Only display my maps on the first page
+      # Currently the first page will have more entries than per_page if the user has maps
+      # We can change per_page on page #1 to correct this, but then page 2 will skip
+      # some maps innapropriately unless we fiddle with offsets or something.
+      if params[:page].nil? or params[:page].to_i == 1
+        @my_maps = Map.where(:real_map_id => nil).where("user_id = #{current_user.id}").includes(:user).order("vote_total DESC")
+      end
+
+      @maps = Map.where(:real_map_id => nil, :published => true).where("user_id <> #{current_user.id}").includes(:user).order("vote_total DESC").paginate(:page => params[:page], :per_page => per_page)
     end
 
     respond_to do |format|

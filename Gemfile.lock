@@ -31,6 +31,8 @@ GEM
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
+    bootstrap-will_paginate (0.0.7)
+      will_paginate
     builder (3.0.0)
     daemons (1.1.8)
     devise (2.0.4)
@@ -112,12 +114,14 @@ GEM
       multi_json (>= 1.0.2)
     warden (1.1.1)
       rack (>= 1.0)
+    will_paginate (3.0.3)
 
 PLATFORMS
   ruby
   x86-mingw32
 
 DEPENDENCIES
+  bootstrap-will_paginate
   devise
   jquery-rails
   pg
@@ -126,3 +130,4 @@ DEPENDENCIES
   sqlite3-ruby
   thin
   uglifier (>= 1.0.3)
+  will_paginate
